@@ -6288,7 +6288,7 @@ mark.confirm {
     const raw = (rec.title || rec.description || ("UAT " + (model.tc || "") + " " + (model.step || ""))).trim();
     const summary = withUatPrefix(raw);
     const pri = priorityId(rec.severity);
-    const base = JIRA_HOST + "/secure/CreateIssueDetails!init.jspa?pid=" + encodeURIComponent(JIRA_PID)
+    const base = JIRA_HOST + "/secure/CreateIssueDetails!init.jspa?pid=11796"
       + "&issuetype=" + encodeURIComponent(JIRA_TYPE)
       + "&summary=" + encodeURIComponent(summary)
       + "&priority=" + encodeURIComponent(pri)
