@@ -1740,6 +1740,8 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
 }
 .connect-chip-btn:hover, .connect-chip-btn:focus-visible { color: var(--ink); }
 @media print { .connect-chip { display: none !important; } }
+.sync-hint { margin: 8px 0; font-size: 0.9rem; opacity: 0.85; }
+.sync-hint[hidden] { display: none; }
 
   </style>
 </head>
@@ -1754,7 +1756,8 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
         <span data-theme-label>Light mode</span>
       </button>
     </div>
-    <p class="lede">UAT window: 16 to 29 Nov 2026. Follow the run order, pass IDs at each handoff, and mark results here. Connect to the sheet and your marks sync to it; otherwise they stay on this device.</p>
+    <p class="sync-hint" data-sync-hint hidden>Open the checklist from the link in the UAT chat to start saving.</p>
+    <p class="lede">UAT window: 16 to 29 Nov 2026. Follow the run order, pass IDs at each handoff, and mark results here. Your marks save to the shared sheet automatically.</p>
     <ul class="dates">
       <li class="date-pill"><strong>Main path end to end</strong> Wed 18 Nov</li>
       <li class="date-pill"><strong>Readiness check</strong> Fri 20 Nov, 11:30 AM PT</li>
@@ -1764,32 +1767,6 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
       <li><a href="https://centific-idc.atlassian.net/jira/software/c/projects/OV2S/boards/1596">UAT Feedback board (OV2S)</a></li>
       <li><a href="https://centific-idc.atlassian.net/jira/dashboards/13598">Ticket status dashboard</a></li>
     </ul>
-    <details class="connect-box" id="uat-connect-box">
-      <summary><span data-connect-summary>Connect to sheet</span></summary>
-      <p class="connect-lede">Paste the Sync link, Read link, and team code your lead shared, plus your name. They stay only in this browser. This page never embeds them.</p>
-      <p class="connect-status" data-connect-status>Not connected. Marks stay on this device.</p>
-      <p class="read-error" data-read-error hidden>Couldn't load filed tickets</p>
-      <form class="connect-form" id="uat-connect-form" autocomplete="off">
-        <label>Sync link
-          <input name="syncUrl" type="text" inputmode="url" spellcheck="false" autocomplete="off">
-        </label>
-        <label>Read link
-          <input name="readUrl" type="text" inputmode="url" spellcheck="false" autocomplete="off">
-        </label>
-        <label>Team code
-          <input name="code" type="text" spellcheck="false" autocomplete="off">
-        </label>
-        <label>Your name
-          <input name="tester" type="text" spellcheck="false" autocomplete="name">
-        </label>
-        <div class="connect-actions">
-          <button type="submit" class="bug-btn primary">Save connection</button>
-          <button type="button" class="bug-btn" data-action="disconnect" hidden>Disconnect</button>
-          <button type="button" class="bug-btn" data-action="cancel-connect" hidden>Cancel</button>
-        </div>
-      </form>
-    </details>
-    <p class="connect-chip" data-connect-chip hidden><span data-connect-chip-text></span><button type="button" class="connect-chip-btn" data-action="change-connect">Change</button></p>
   </header>
 
   <details class="how wrap">
@@ -1887,7 +1864,6 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
   <div class="jumpbar">
     <div class="jumpbar-inner wrap">
       <div id="results-count" aria-live="polite">49 steps</div>
-      <p class="device-note" data-sync-device-note>Not connected: pass, fail, and blocked marks stay only in this browser. Connect to the sheet to sync them.</p>
       <p class="read-error" data-read-error hidden>Couldn't load filed tickets</p>
     </div>
   </div>
@@ -1927,7 +1903,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     <div class="tc-assign-row">
       <div class="tc-assign-chips" data-assign-chips></div>
     </div>
-    <p class="tc-assign-hint" data-assign-hint><button type="button" class="tc-assign-connect" data-action="open-connect">Connect to the sheet</button> to see assigned people</p>
+    <p class="tc-assign-hint" data-assign-hint>Assigned people load from the sheet</p>
   </div>
   <div class="guide-intro" data-guide-for="TC1"><aside class="guide-panel guide-warn" aria-label="Test project"><h3>Test project</h3><p><p>Use OD_Sesame (PRJ-01057) for UAT testing.</p></p><p><p>Use test accounts only. Never write a password anywhere on this page, in the sheet, or in Jira.</p></p></aside><aside class="guide-panel" aria-label="Before you start"><h3>Before you start</h3><ul class="guide-list"><li>Sign in only with your assigned test account from the TEST_Accts tab. Never paste passwords into chat, the sheet, or Jira.</li><li>You need OneForma PM access and One Tools Admin or PM access, plus a PID, client, and approved rate.</li><li>Project: OD_Sesame (PRJ-01057); country/language United States, en_US; venue zone America/Los_Angeles.</li><li>Confirm in session which staff names to add. Do not add Zane. Andrea as PSA PM is not needed to finish TC1.</li><li>Take a screenshot of every result, and write down the OneForma Project ID, Job ID, and One Tools project name.</li><li>If something does not match You should see, mark the step Fail and note: what you clicked, what you expected, what happened, the screenshot, and the IDs.</li></ul></aside><aside class="guide-panel" aria-label="Where things are in One Tools"><h3>Where things are in One Tools</h3><dl class="guide-where"><div><dt>OneForma project</dt><dd>In OneForma, open the OD_Sesame (PRJ-01057) project.</dd></div><div><dt>One Tools Projects</dt><dd>One Tools, then Projects. Find the project by its OneForma project ID.</dd></div><div><dt>Project members</dt><dd>Resource list, then Project members. Set roles with Roles, then Save roles.</dd></div><div><dt>General configuration</dt><dd>Configuration, then General. Save draft, then Validate and publish.</dd></div><div><dt>Payment and notifications</dt><dd>Configuration, then Payment and Notification center.</dd></div><div><dt>After General is published</dt><dd>The menu shows Booking Workspace, Sessions, Session Tasks, and Session Payments.</dd></div></dl></aside><aside class="guide-panel" aria-label="Who is who"><h3>Who is who</h3><ul class="guide-list"><li><strong>OneForma PM and One Tools Admin / PM:</strong> David</li><li><strong>Watcher (OneForma vs One Tools field match):</strong> Shreya</li><li><strong>Watcher on rate, currency, and unit (1.2 and 1.7):</strong> Saswati</li><li><strong>Staff to add:</strong> Confirm in session (Isha&#x27;s schedulers; Derrell / Bhargav as Moderator). Do not add Zane.</li><li><strong>PM approver for later TC5.7:</strong> Shreya</li></ul></aside></div>
   
@@ -1941,7 +1917,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC1-1-1">
-        <legend>Status for 1.1, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 1.1</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -2030,7 +2006,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC1-1-2">
-        <legend>Status for 1.2, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 1.2</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -2119,7 +2095,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC1-1-3">
-        <legend>Status for 1.3, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 1.3</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -2208,7 +2184,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC1-1-4">
-        <legend>Status for 1.4, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 1.4</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -2298,7 +2274,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC1-1-5">
-        <legend>Status for 1.5, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 1.5</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -2387,7 +2363,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC1-1-6">
-        <legend>Status for 1.6, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 1.6</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -2476,7 +2452,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC1-1-7">
-        <legend>Status for 1.7, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 1.7</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -2567,7 +2543,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     <div class="tc-assign-row">
       <div class="tc-assign-chips" data-assign-chips></div>
     </div>
-    <p class="tc-assign-hint" data-assign-hint><button type="button" class="tc-assign-connect" data-action="open-connect">Connect to the sheet</button> to see assigned people</p>
+    <p class="tc-assign-hint" data-assign-hint>Assigned people load from the sheet</p>
   </div>
   <div class="guide-intro" data-guide-for="TC2"><aside class="guide-panel guide-warn" aria-label="Test project"><h3>Test project</h3><p><p>Use OD_Sesame (PRJ-01057) for UAT testing.</p></p><p><p>Use test accounts only. Never write a password anywhere on this page, in the sheet, or in Jira.</p></p></aside><aside class="guide-panel" aria-label="Before you start"><h3>Before you start</h3><ul class="guide-list"><li>Scheduling setup starts only after TC1 is published (1.6 and 1.7).</li><li>Venue: UAT Venue LA, America/Los_Angeles. Session type: UAT Lab 60 min, SessionRules, 09:00 to 18:00 Mon to Fri, 2 places per slot, Job ID + rate.</li><li>Confirm in session the venue address to enter, and the booking-window dates to use. Do not use a real production venue.</li><li>Sign in only with your assigned test account from the TEST_Accts tab. Never paste passwords into chat, the sheet, or Jira.</li><li>Name anything you create with your initials, for example UAT-DK-...</li><li>Take a screenshot of every result, and write down venue, session type, Job ID, rate, and the moderator whose hours are set.</li><li>If something does not match You should see, mark the step Fail and note: what you clicked, what you expected, what happened, the screenshot, and the IDs.</li></ul></aside><aside class="guide-panel" aria-label="Where things are in One Tools"><h3>Where things are in One Tools</h3><dl class="guide-where"><div><dt>Venues</dt><dd>Configuration, then Venues, then Add venue.</dd></div><div><dt>Session types</dt><dd>Configuration, then Sessions, then Add Session Type.</dd></div><div><dt>Slot rules and price</dt><dd>On the session type (SessionRules, booking window, and Price). Confirm in session if those fields are on a separate screen.</dd></div><div><dt>Moderators</dt><dd>Resource list, then Moderators, then View. Edit Working Hours, then Save Changes.</dd></div><div><dt>Session tasks</dt><dd>Output, then Session Tasks, then Add task (gate: Before the delivery is submitted).</dd></div><div><dt>Venue address</dt><dd>Confirm in session.</dd></div></dl></aside><aside class="guide-panel" aria-label="Who is who"><h3>Who is who</h3><ul class="guide-list"><li><strong>One Tools PM / Admin:</strong> Shreya</li><li><strong>Watcher, and primary owner of 2.4:</strong> Saswati (she creates the OneForma job ad)</li><li><strong>Moderators whose hours are set:</strong> Derrell and/or Bhargav. Do not use Zane.</li><li><strong>Will use the session type in TC4:</strong> Isha</li></ul></aside></div>
   
@@ -2581,7 +2557,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC2-2-1">
-        <legend>Status for 2.1, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 2.1</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -2670,7 +2646,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC2-2-2">
-        <legend>Status for 2.2, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 2.2</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -2759,7 +2735,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC2-2-3">
-        <legend>Status for 2.3, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 2.3</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -2848,7 +2824,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC2-2-4">
-        <legend>Status for 2.4, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 2.4</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -2937,7 +2913,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC2-2-5">
-        <legend>Status for 2.5, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 2.5</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -3026,7 +3002,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC2-2-6">
-        <legend>Status for 2.6, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 2.6</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -3115,7 +3091,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC2-2-7">
-        <legend>Status for 2.7, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 2.7</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -3206,7 +3182,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     <div class="tc-assign-row">
       <div class="tc-assign-chips" data-assign-chips></div>
     </div>
-    <p class="tc-assign-hint" data-assign-hint><button type="button" class="tc-assign-connect" data-action="open-connect">Connect to the sheet</button> to see assigned people</p>
+    <p class="tc-assign-hint" data-assign-hint>Assigned people load from the sheet</p>
   </div>
   <div class="guide-intro" data-guide-for="TC3"><aside class="guide-panel guide-warn" aria-label="Test project"><h3>Test project</h3><p>Use OD_Sesame (PRJ-01057) for UAT testing.</p><p>Use test accounts only. Never write a password anywhere on this page, in the sheet, or in Jira.</p></aside><aside class="guide-panel" aria-label="Before you start"><h3>Before you start</h3><ul class="guide-list"><li>Sign in only with your assigned test account from the TEST_Accts tab. Never use your own real account to book.</li><li>Never paste passwords into chat, the sheet, or Jira.</li><li>Book and invite test accounts only. No real people or real emails.</li><li>Name anything you create with your initials, for example UAT-DK-...</li><li>Take a screenshot of every result, and write down every SES ID you create.</li><li>If something does not match You should see, mark the step Fail and note: what you clicked, what you expected, what happened, the screenshot, and the IDs.</li></ul></aside><aside class="guide-panel" aria-label="Where things are in One Tools"><h3>Where things are in One Tools</h3><dl class="guide-where"><div><dt>Participants</dt><dd>Resource list, then Participants</dd></div><div><dt>Booking Workspace</dt><dd>Scheduling list, then Booking Workspace (tabs: Everyone, To contact, Contacting, Booked, plus the Scheduler assignment tab)</dd></div><div><dt>Participant menu</dt><dd>The ... on a row: Book on behalf, Assign, Remove</dd></div><div><dt>Sessions</dt><dd>Output, then Sessions (Create Session button)</dd></div><div><dt>Session settings</dt><dd>Session configuration (per-slot capacity, group cap) and its Rules section (24 h reschedule and cancel cutoff, no-show limit, portal booking)</dd></div><div><dt>Members and Moderators</dt><dd>Members page (roles PM, Scheduler, Moderator, Viewer). Moderators only see sessions they moderate.</dd></div></dl></aside><aside class="guide-panel" aria-label="Who is who"><h3>Who is who</h3><ul class="guide-list"><li><strong>PM:</strong> Drew, David</li><li><strong>Scheduler:</strong> Isha (second scheduler for 3.6: Alejandra, Mounika, or Minal)</li><li><strong>Participants P1-P4:</strong> Crowd test accounts (Nikhitha, Shilpa, Drew or David as P3; confirm P4 in session)</li></ul></aside><aside class="guide-panel guide-callout" aria-label="PM setup for booking checks"><h3>PM setup for 4.4 and 4.5</h3><p><strong>PM setup before 4.4 and 4.5:</strong> create a session type with a slot capacity of 2. The live slot capacity is 4, so those group and double-booking checks will not work on the live type.</p><p>Also have at least one venue and a moderator with hours set, and confirm the 24 h cutoff in Rules.</p></aside></div>
   
@@ -3220,7 +3196,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC3-3-1">
-        <legend>Status for 3.1, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 3.1</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -3309,7 +3285,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC3-3-2">
-        <legend>Status for 3.2, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 3.2</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -3398,7 +3374,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC3-3-3">
-        <legend>Status for 3.3, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 3.3</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -3487,7 +3463,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC3-3-4">
-        <legend>Status for 3.4, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 3.4</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -3576,7 +3552,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC3-3-5">
-        <legend>Status for 3.5, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 3.5</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -3665,7 +3641,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC3-3-6">
-        <legend>Status for 3.6, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 3.6</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -3754,7 +3730,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC3-3-7">
-        <legend>Status for 3.7, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 3.7</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -3845,7 +3821,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     <div class="tc-assign-row">
       <div class="tc-assign-chips" data-assign-chips></div>
     </div>
-    <p class="tc-assign-hint" data-assign-hint><button type="button" class="tc-assign-connect" data-action="open-connect">Connect to the sheet</button> to see assigned people</p>
+    <p class="tc-assign-hint" data-assign-hint>Assigned people load from the sheet</p>
   </div>
   <div class="guide-intro" data-guide-for="TC4"><aside class="guide-panel guide-warn" aria-label="Test project"><h3>Test project</h3><p>Use OD_Sesame (PRJ-01057) for UAT testing.</p><p>Use test accounts only. Never write a password anywhere on this page, in the sheet, or in Jira.</p></aside><aside class="guide-panel" aria-label="Before you start"><h3>Before you start</h3><ul class="guide-list"><li>Sign in only with your assigned test account from the TEST_Accts tab. Never use your own real account to book.</li><li>Never paste passwords into chat, the sheet, or Jira.</li><li>Book and invite test accounts only. No real people or real emails.</li><li>Name anything you create with your initials, for example UAT-DK-...</li><li>Take a screenshot of every result, and write down every SES ID you create.</li><li>If something does not match You should see, mark the step Fail and note: what you clicked, what you expected, what happened, the screenshot, and the IDs.</li></ul></aside><aside class="guide-panel" aria-label="Where things are in One Tools"><h3>Where things are in One Tools</h3><dl class="guide-where"><div><dt>Participants</dt><dd>Resource list, then Participants</dd></div><div><dt>Booking Workspace</dt><dd>Scheduling list, then Booking Workspace (tabs: Everyone, To contact, Contacting, Booked, plus the Scheduler assignment tab)</dd></div><div><dt>Participant menu</dt><dd>The ... on a row: Book on behalf, Assign, Remove</dd></div><div><dt>Sessions</dt><dd>Output, then Sessions (Create Session button)</dd></div><div><dt>Session settings</dt><dd>Session configuration (per-slot capacity, group cap) and its Rules section (24 h reschedule and cancel cutoff, no-show limit, portal booking)</dd></div><div><dt>Members and Moderators</dt><dd>Members page (roles PM, Scheduler, Moderator, Viewer). Moderators only see sessions they moderate.</dd></div></dl></aside><aside class="guide-panel" aria-label="Who is who"><h3>Who is who</h3><ul class="guide-list"><li><strong>PM:</strong> Drew, David</li><li><strong>Scheduler:</strong> Isha (second scheduler for 3.6: Alejandra, Mounika, or Minal)</li><li><strong>Participants P1-P4:</strong> Crowd test accounts (Nikhitha, Shilpa, Drew or David as P3; confirm P4 in session)</li></ul></aside><aside class="guide-panel guide-callout" aria-label="PM setup for booking checks"><h3>PM setup for 4.4 and 4.5</h3><p><strong>PM setup before 4.4 and 4.5:</strong> create a session type with a slot capacity of 2. The live slot capacity is 4, so those group and double-booking checks will not work on the live type.</p><p>Also have at least one venue and a moderator with hours set, and confirm the 24 h cutoff in Rules.</p></aside></div>
   
@@ -3859,7 +3835,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC4-4-1">
-        <legend>Status for 4.1, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 4.1</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -3948,7 +3924,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC4-4-2">
-        <legend>Status for 4.2, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 4.2</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -4037,7 +4013,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC4-4-3">
-        <legend>Status for 4.3, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 4.3</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -4126,7 +4102,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC4-4-4">
-        <legend>Status for 4.4, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 4.4</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -4215,7 +4191,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC4-4-5">
-        <legend>Status for 4.5, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 4.5</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -4304,7 +4280,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC4-4-6">
-        <legend>Status for 4.6, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 4.6</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -4393,7 +4369,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC4-4-7">
-        <legend>Status for 4.7, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 4.7</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -4482,7 +4458,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC4-4-8">
-        <legend>Status for 4.8, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 4.8</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -4573,7 +4549,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     <div class="tc-assign-row">
       <div class="tc-assign-chips" data-assign-chips></div>
     </div>
-    <p class="tc-assign-hint" data-assign-hint><button type="button" class="tc-assign-connect" data-action="open-connect">Connect to the sheet</button> to see assigned people</p>
+    <p class="tc-assign-hint" data-assign-hint>Assigned people load from the sheet</p>
   </div>
   <div class="guide-intro" data-guide-for="TC5"><aside class="guide-panel guide-warn" aria-label="Test project"><h3>Test project</h3><p><p>Use OD_Sesame (PRJ-01057) for UAT testing.</p></p><p><p>Use test accounts only. Never write a password anywhere on this page, in the sheet, or in Jira.</p></p></aside><aside class="guide-panel" aria-label="Before you start"><h3>Before you start</h3><ul class="guide-list"><li>You need a booked session from TC4 that is due today or in its check-in window. Vendor data: SES-... for P2, that is SES-P2-behalf if timed for Wednesday. The session task must already be active from TC2.6.</li><li>Brief Derrell and Bhargav before these steps. Derrell was not on the 16 Nov call.</li><li>Confirm in session whether check-in is on or manual, whether team delivery applies, who raises payment, and whether the generic delivery upload is the same as TC7.</li><li>Impersonate Andrea as PSA PM only if a higher approval step appears; it is not required to start. AP / BO approval is late and not needed to start.</li><li>Sign in only with your assigned test account from the TEST_Accts tab. Never paste passwords into chat, the sheet, or Jira. Use test accounts only.</li><li>Take a screenshot of every result, and write down every SES ID, Delivery ID, and Payment ID you create.</li><li>If something does not match You should see, mark the step Fail and note: what you clicked, what you expected, what happened, the screenshot, and the IDs.</li></ul></aside><aside class="guide-panel" aria-label="Where things are in One Tools"><h3>Where things are in One Tools</h3><dl class="guide-where"><div><dt>Sessions</dt><dd>Output, then Sessions, then open the session drawer.</dd></div><div><dt>Check-in</dt><dd>Check in the participant, or Manual check-in with a reason when check-in is off. Confirm in session whether check-in is on or manual.</dd></div><div><dt>Start and complete</dt><dd>Start capture, then confirm; Complete session, then confirm. Confirm in session what the UI actually requires.</dd></div><div><dt>Delivery upload</dt><dd>Submissions, then Delivery submissions. Wait for Uploaded and verified, then Submit delivery, then Confirm submit. This is the generic delivery upload unless Bhargav confirms it is the same path as TC7.</dd></div><div><dt>Session payments</dt><dd>Output, then Session Payments, then Needs action.</dd></div><div><dt>OneForma payment record</dt><dd>Confirm in session the exact OneForma screen.</dd></div></dl></aside><aside class="guide-panel" aria-label="Who is who"><h3>Who is who</h3><ul class="guide-list"><li><strong>Moderator:</strong> Derrell (Bhargav as paired moderator / watcher)</li><li><strong>PM approval:</strong> Shreya</li><li><strong>Watchers on rate, currency, and the OneForma record:</strong> Saswati, and David on the mismatch check</li><li><strong>P2 Crowd tester:</strong> May need to be present at check-in, and may receive the completed email</li><li><strong>Andrea as PSA PM:</strong> Only if a higher approval step appears; not required to start</li></ul></aside></div>
   
@@ -4587,7 +4563,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC5-5-1">
-        <legend>Status for 5.1, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 5.1</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -4676,7 +4652,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC5-5-2">
-        <legend>Status for 5.2, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 5.2</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -4765,7 +4741,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC5-5-3">
-        <legend>Status for 5.3, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 5.3</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -4854,7 +4830,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC5-5-4">
-        <legend>Status for 5.4, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 5.4</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -4943,7 +4919,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC5-5-5">
-        <legend>Status for 5.5, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 5.5</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -5032,7 +5008,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC5-5-6">
-        <legend>Status for 5.6, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 5.6</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -5121,7 +5097,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC5-5-7">
-        <legend>Status for 5.7, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 5.7</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -5210,7 +5186,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC5-5-8">
-        <legend>Status for 5.8, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 5.8</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -5299,7 +5275,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC5-5-9">
-        <legend>Status for 5.9, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 5.9</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -5390,7 +5366,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     <div class="tc-assign-row">
       <div class="tc-assign-chips" data-assign-chips></div>
     </div>
-    <p class="tc-assign-hint" data-assign-hint><button type="button" class="tc-assign-connect" data-action="open-connect">Connect to the sheet</button> to see assigned people</p>
+    <p class="tc-assign-hint" data-assign-hint>Assigned people load from the sheet</p>
   </div>
   <div class="guide-intro" data-guide-for="TC6"><aside class="guide-panel guide-warn" aria-label="Test project"><h3>Test project</h3><p><p>Use OD_Sesame (PRJ-01057) for UAT testing.</p></p><p><p>Use test accounts only. Never write a password anywhere on this page, in the sheet, or in Jira.</p></p></aside><aside class="guide-panel" aria-label="Before you start"><h3>Before you start</h3><ul class="guide-list"><li>You need at least 4 booked sessions more than 24 h ahead, and one inside 24 h, from TC4.8. The reschedule / cancel cutoff is 24 h (default). Use the labeled sessions SES-R, SES-C, SES-NS, and SES-cut.</li><li>Brief Isha before these steps. Staff reschedule (6.2) must be done by a scheduler.</li><li>Do 6.3 as a pair in the daily session, 11:30-12:00 PT.</li><li>Friday 20 Nov, 11:30 AM PT readiness check: walk the TC6 audit trail together (6.8).</li><li>Do not remove a persona still needed for a main-path re-test. Confirm in session whom to remove.</li><li>Sign in only with your assigned test account from the TEST_Accts tab. Never paste passwords into chat, the sheet, or Jira. Book and invite test accounts only.</li><li>Take a screenshot of every result, and write down every SES ID you use.</li><li>If something does not match You should see, mark the step Fail and note: what you clicked, what you expected, what happened, the screenshot, and the IDs.</li></ul></aside><aside class="guide-panel" aria-label="Where things are in One Tools"><h3>Where things are in One Tools</h3><dl class="guide-where"><div><dt>Participant reschedule or cancel from email</dt><dd>The manage my session link in the confirmation email (from TC4.6).</dd></div><div><dt>Staff reschedule</dt><dd>In the workspace. Confirm in session the exact control.</dd></div><div><dt>No-show</dt><dd>Update status, then No show, with a reason.</dd></div><div><dt>Remove and restore</dt><dd>Log contact drawer, then Remove from the project (reason and justification), then Restore.</dd></div><div><dt>History</dt><dd>The participant History and the Session record.</dd></div><div><dt>Cutoff</dt><dd>Session Rules: 24 h reschedule and cancel cutoff. Confirm the cutoff is still 24 h before 6.3.</dd></div></dl></aside><aside class="guide-panel" aria-label="Who is who"><h3>Who is who</h3><ul class="guide-list"><li><strong>Scheduler:</strong> Isha</li><li><strong>Participants (Crowd):</strong> Nikhitha or Shilpa</li><li><strong>Moderator:</strong> Derrell (Bhargav as pair)</li><li><strong>PM:</strong> Shreya</li><li><strong>Watchers:</strong> Drew or David (especially 6.3 and 6.7)</li></ul></aside></div>
   
@@ -5404,7 +5380,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC6-6-1">
-        <legend>Status for 6.1, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 6.1</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -5493,7 +5469,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC6-6-2">
-        <legend>Status for 6.2, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 6.2</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -5582,7 +5558,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC6-6-3">
-        <legend>Status for 6.3, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 6.3</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -5671,7 +5647,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC6-6-4">
-        <legend>Status for 6.4, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 6.4</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -5760,7 +5736,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC6-6-5">
-        <legend>Status for 6.5, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 6.5</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -5849,7 +5825,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC6-6-6">
-        <legend>Status for 6.6, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 6.6</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -5938,7 +5914,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC6-6-7">
-        <legend>Status for 6.7, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 6.7</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -6027,7 +6003,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC6-6-8">
-        <legend>Status for 6.8, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 6.8</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -6118,7 +6094,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     <div class="tc-assign-row">
       <div class="tc-assign-chips" data-assign-chips></div>
     </div>
-    <p class="tc-assign-hint" data-assign-hint><button type="button" class="tc-assign-connect" data-action="open-connect">Connect to the sheet</button> to see assigned people</p>
+    <p class="tc-assign-hint" data-assign-hint>Assigned people load from the sheet</p>
   </div>
   <div class="guide-intro" data-guide-for="TC7"><aside class="guide-panel guide-warn" aria-label="Test project"><h3>Test project</h3><p><p>Use OD_Sesame (PRJ-01057) for UAT testing.</p></p><p><p>Use test accounts only. Never write a password anywhere on this page, in the sheet, or in Jira.</p></p></aside><aside class="guide-panel" aria-label="Before you start"><h3>Before you start</h3><ul class="guide-list"><li>This case is proposed, pending Bhargav confirm. All steps below are confirm in session.</li><li>It was added on the 16 Nov call because the vendor cases had no Sesame tar / inspection-report upload, which the team called a gap for moderators.</li><li>Do not invent clicks. If the feature is still missing, stop and follow up rather than inventing a path.</li><li>Do not treat the generic delivery upload in TC5.5 as this case until Bhargav confirms it is the same path.</li><li>Confirm in session what fixture to use (a sample tar and inspection report). Do not put credentials on this page, in the sheet, or in Jira.</li><li>Sign in only with your assigned test account from the TEST_Accts tab. Never paste passwords into chat, the sheet, or Jira.</li><li>Take a screenshot of every result, and write down the upload / report ID and the linked Session ID.</li><li>If something does not match You should see, mark the step Fail and note: what you clicked, what you expected, what happened, the screenshot, and the IDs.</li></ul></aside><aside class="guide-panel" aria-label="Where things are in One Tools"><h3>Where things are in One Tools</h3><dl class="guide-where"><div><dt>Upload entry point</dt><dd>Confirm in session. That is the work of 7.1.</dd></div><div><dt>Generic delivery upload (TC5.5)</dt><dd>Submissions, then Delivery submissions. Confirm in session whether TC7 is the same path or a separate one.</dd></div><div><dt>Where PM and Moderator find the linked file</dt><dd>Confirm in session.</dd></div></dl></aside><aside class="guide-panel" aria-label="Who is who"><h3>Who is who</h3><ul class="guide-list"><li><strong>Owner:</strong> David</li><li><strong>Confirm with:</strong> Bhargav</li><li><strong>Alternate uploader / observer:</strong> Derrell</li><li><strong>PM trying to open the same report:</strong> Shreya</li></ul></aside><aside class="guide-panel guide-callout" aria-label="Pending confirm"><h3>Pending confirm</h3><p>All TC7 steps are confirm in session. If the upload entry point is still missing, log that as a finding rather than inventing clicks.</p></aside></div>
   
@@ -6132,7 +6108,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC7-7-1">
-        <legend>Status for 7.1, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 7.1</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -6221,7 +6197,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC7-7-2">
-        <legend>Status for 7.2, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 7.2</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -6310,7 +6286,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC7-7-3">
-        <legend>Status for 7.3, <span data-sync-label>this device only, connect to sync</span></legend>
+        <legend>Status for 7.3</legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
@@ -6417,7 +6393,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
   </nav>
 
   <footer class="page-foot wrap">
-    <p>Source: TC_By_Owner tab in UAT_One Tools, plus the 16 Nov planning call. Status marks sync to the sheet only after you connect; otherwise they stay on this device. Do not paste account passwords or personal email addresses into notes or tickets from this page.</p>
+    <p>Source: TC_By_Owner tab in UAT_One Tools, plus the 16 Nov planning call. Status marks save to the shared sheet automatically. Do not paste account passwords or personal email addresses into notes or tickets from this page.</p>
     <ul class="jira-links">
       <li><a href="https://centific-idc.atlassian.net/jira/software/c/projects/OV2S/boards/1596">UAT Feedback board (OV2S)</a></li>
       <li><a href="https://centific-idc.atlassian.net/jira/dashboards/13598">Ticket status dashboard</a></li>
@@ -7745,7 +7721,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 (function () {
   const CFG_KEY = "one-tools-uat-sync-cfg-v1";
-  const POLL_MS = 60000;
+  const POLL_MS = 20000;
   let pollTimer = null;
   let stepMap = {};
   let assignMap = {};
@@ -7893,13 +7869,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!connected) {
         hint.hidden = false;
         hint.replaceChildren();
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = "tc-assign-connect";
-        btn.setAttribute("data-action", "open-connect");
-        btn.textContent = "Connect to the sheet";
-        hint.appendChild(btn);
-        hint.appendChild(document.createTextNode(" to see assigned people"));
+        hint.hidden = true;
       } else if (readFailed || !enabled) {
         hint.hidden = false;
         hint.classList.add("is-error");
@@ -7933,7 +7903,13 @@ document.addEventListener("DOMContentLoaded", function () {
     try { return JSON.parse(raw); } catch (e) { return null; }
   }
 
+  // Filled at build time. When the placeholders are not replaced (dev/test
+  // builds), fall back to a config saved in localStorage.
+  const EMBED = { url: "https://default9b415834803a4da0afdcfe6b1d52d6.49.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/26/workflows/8ab399251aab427dbd5d127066ae0bde/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=cFc7qEMIBWNlzf7pwJ9lWV7orSQfUIks3AlR1ovD7XA", readUrl: "https://default9b415834803a4da0afdcfe6b1d52d6.49.environment.api.powerplatform.com:443/powerautomate/automations/direct/cu/18/workflows/05dd5ef0144146658e2affd7f4a0484b/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=LYLnylZ6X876HnLOO8S3f1WByemUCIzpWzoc7wWBcs8", code: "JL5x0mzuirEi", tester: "UAT team" };
+  const EMBEDDED = EMBED.code.indexOf("__UAT_") !== 0 && !!EMBED.code;
+
   function getCfg() {
+    if (EMBEDDED) return { url: EMBED.url, readUrl: EMBED.readUrl, code: EMBED.code, tester: EMBED.tester };
     try {
       const raw = localStorage.getItem(CFG_KEY);
       const cfg = raw ? safeParse(raw) : null;
@@ -7942,7 +7918,7 @@ document.addEventListener("DOMContentLoaded", function () {
         url: String(cfg.url || "").trim(),
         readUrl: String(cfg.readUrl || "").trim(),
         code: String(cfg.code || "").trim(),
-        tester: String(cfg.tester || "").trim()
+        tester: String(cfg.tester || "").trim() || "UAT team"
       };
     } catch (e) {
       return null;
@@ -8001,39 +7977,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return !!(cfg && cfg.url && cfg.code && cfg.tester);
   }
 
-  function paintConnect() {
-    const cfg = getCfg();
-    const disconnectBtns = $all("[data-action=disconnect]");
-    const connected = !!(cfg && cfg.code && (cfg.readUrl || cfg.url));
-    const full = isFullyConnected(cfg);
-    if (!full) connectEditing = false;
-    disconnectBtns.forEach(function (b) { b.hidden = !connected; });
-    const box = document.getElementById("uat-connect-box");
-    const chip = document.querySelector("[data-connect-chip]");
-    const showBox = !full || connectEditing;
-    if (box) {
-      box.hidden = !showBox;
-      if (!showBox) box.open = false;
-    }
-    if (chip) {
-      chip.hidden = showBox || !full;
-      const txt = chip.querySelector("[data-connect-chip-text]");
-      if (txt && full) txt.textContent = "Connected as " + cfg.tester + " \u00b7 ";
-    }
-    $all("[data-action=cancel-connect]").forEach(function (b) { b.hidden = !(full && connectEditing); });
-    paintSyncLabels();
-    if (!connected) {
-      setSummary("Connect to sheet");
-      setStatus("Not connected. Marks stay on this device.");
-      return;
-    }
-    const who = cfg.tester ? ("Connected as " + cfg.tester) : "Connected";
-    setSummary(who);
-    if (cfg.url && cfg.readUrl) setStatus("Connected. Your marks sync to the sheet, and filed tickets and others' marks refresh while this tab is visible.");
-    else if (cfg.url) setStatus("Connected. Your marks sync to the sheet. Add a Read link to show filed tickets and others' marks.");
-    else setStatus("Connected read only. Marks stay on this device. Add a Sync link to share them.");
-    paintAllAssign();
-  }
+  function paintConnect() {}
 
   function applyRead(rows, opts) {
     const stale = !!(opts && opts.epoch !== undefined && opts.epoch !== writeEpoch);
@@ -8121,30 +8065,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }, POLL_MS);
   }
 
-  function saveFromForm(form) {
-    const cfg = {
-      url: (form.syncUrl.value || "").trim(),
-      readUrl: (form.readUrl.value || "").trim(),
-      code: (form.code.value || "").trim(),
-      tester: (form.tester.value || "").trim()
-    };
-    if (!cfg.code) {
-      setStatus("Add the team code to connect.");
-      return false;
-    }
-    if (!cfg.url && !cfg.readUrl) {
-      setStatus("Add a Read link or Sync link to connect.");
-      return false;
-    }
-    if (!setCfg(cfg)) {
-      setStatus("Could not save the connection in this browser.");
-      return false;
-    }
-    connectEditing = false;
-    paintConnect();
-    startPoll();
-    return true;
-  }
 
   // ---- Step status and Jira writes: queue, retry, backfill ----
   function readJson(key, fallback) {
@@ -8200,17 +8120,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function paintSyncLabels() {
-    const cfg = getCfg();
-    const synced = canSyncSteps(cfg);
-    const label = synced ? "synced to the sheet" : (isConnected(cfg) ? "this device only, add a Sync link to share" : "this device only, connect to sync");
-    $all("[data-sync-label]").forEach(function (el) { el.textContent = label; });
-    $all("[data-sync-device-note]").forEach(function (el) {
-      el.textContent = synced
-        ? "Connected: pass, fail, and blocked marks sync to the sheet, and the sheet's marks show here."
-        : (isConnected(cfg)
-          ? "Read only: marks stay on this device until you add a Sync link in Connect to sheet."
-          : "Not connected: pass, fail, and blocked marks stay only in this browser. Connect to the sheet to sync them.");
-    });
+    const on = canSyncSteps(getCfg());
+    $all("[data-sync-hint]").forEach(function (el) { el.hidden = on; });
   }
 
   function enqueueWrite(kind, stepId, body) {
@@ -8266,9 +8177,8 @@ document.addEventListener("DOMContentLoaded", function () {
           saveQueue(cur);
           const msg = String((res.j && res.j.error) || "");
           if (/code/i.test(msg)) {
-            disconnect();
-            setStatus("The team code was rejected, so nothing was written. Connect again with the right code.");
-            return Promise.resolve();
+            setSyncNote(item.stepId, "Couldn't save", true);
+            return next();
           }
           setSyncNote(item.stepId, "Couldn't save", true);
           return next();
@@ -8276,7 +8186,7 @@ document.addEventListener("DOMContentLoaded", function () {
         item.tries = (item.tries || 0) + 1;
         const cur = loadQueue();
         if (cur.length) { cur[0].tries = item.tries; saveQueue(cur); }
-        setSyncNote(item.stepId, "Couldn't save", true);
+        setSyncNote(item.stepId, "Couldn't save, retrying", true);
         clearTimeout(flushTimer);
         flushTimer = setTimeout(flushQueue, Math.min(60000, 2000 * Math.pow(2, item.tries)));
         return Promise.resolve();
@@ -8372,19 +8282,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  function openConnect() {
-    const box = document.getElementById("uat-connect-box");
-    if (!box) return;
-    connectEditing = true;
-    paintConnect();
-    box.open = true;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const top = box.getBoundingClientRect().top + window.pageYOffset - 12;
-    window.scrollTo({ top: Math.max(0, top), behavior: reduce ? "auto" : "smooth" });
-    const form = document.getElementById("uat-connect-form");
-    const first = form && (form.querySelector('input[name="syncUrl"]') || form.querySelector("input"));
-    if (first && typeof first.focus === "function") first.focus({ preventScroll: true });
-  }
 
   function disconnect() {
     stopPoll();
@@ -8395,36 +8292,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function bind() {
-    const form = document.getElementById("uat-connect-form");
-    if (form) {
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        saveFromForm(form);
-      });
-    }
-    document.addEventListener("click", function (e) {
-      if (e.target.closest("[data-action=disconnect]")) {
-        e.preventDefault();
-        disconnect();
-        return;
-      }
-      if (e.target.closest("[data-action=change-connect]")) {
-        e.preventDefault();
-        openConnect();
-        return;
-      }
-      if (e.target.closest("[data-action=cancel-connect]")) {
-        e.preventDefault();
-        connectEditing = false;
-        paintConnect();
-        return;
-      }
-      if (e.target.closest("[data-action=open-connect]")) {
-        e.preventDefault();
-        openConnect();
-        return;
-      }
-    });
     document.addEventListener("visibilitychange", function () {
       if (document.visibilityState === "visible") fetchRead();
     });
