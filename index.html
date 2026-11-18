@@ -1423,7 +1423,23 @@ html[data-theme="dark"] {
 }
 .tc-assign-hint[hidden],
 .tc-assign-status[hidden] { display: none; }
+.tc-assign-hint.is-error,
 .tc-assign-status.is-error { color: var(--danger); }
+.tc-assign-connect {
+  appearance: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: none;
+  color: var(--accent);
+  font: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+  cursor: pointer;
+}
+.tc-assign-connect:hover,
+.tc-assign-connect:focus-visible { color: var(--ink); }
 @media (max-width: 720px) {
   .assign-chip, .assign-chip-remove, .tc-assign .bug-btn, .tc-assign-pick { min-height: 44px; }
 }
@@ -1881,7 +1897,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
         <div class="tc-assign-picker" data-assign-picker hidden role="listbox" aria-label="Add a person to TC1"></div>
       </div>
     </div>
-    <p class="tc-assign-hint" data-assign-hint>Assignments turn on soon</p>
+    <p class="tc-assign-hint" data-assign-hint><button type="button" class="tc-assign-connect" data-action="open-connect">Connect to the sheet</button> to see and edit assignments</p>
     <p class="tc-assign-status" data-assign-status hidden aria-live="polite"></p>
   </div>
   <div class="guide-intro" data-guide-for="TC1"><aside class="guide-panel guide-warn" aria-label="Use a test project"><h3>Use a test project</h3><p><p><strong>OD_Sesame PRJ-01057 is a real project.</strong> Do not book or invite anyone there. Use a test project.</p></p><p><p>Use test accounts only. Never write a password anywhere on this page, in the sheet, or in Jira.</p></p></aside><aside class="guide-panel" aria-label="Before you start"><h3>Before you start</h3><ul class="guide-list"><li>Sign in only with your assigned test account from the TEST_Accts tab. Never paste passwords into chat, the sheet, or Jira.</li><li>You need OneForma PM access and One Tools Admin or PM access, plus a PID, client, and approved rate.</li><li>Use project name UAT-Onsite-&lt;date&gt;; country/language United States, en_US; venue zone America/Los_Angeles.</li><li>Confirm in session which staff names to add. Do not add Zane. Andrea as PSA PM is not needed to finish TC1.</li><li>Take a screenshot of every result, and write down the OneForma Project ID, Job ID, and One Tools project name.</li><li>If something does not match You should see, mark the step Fail and note: what you clicked, what you expected, what happened, the screenshot, and the IDs.</li></ul></aside><aside class="guide-panel" aria-label="Where things are in One Tools"><h3>Where things are in One Tools</h3><dl class="guide-where"><div><dt>OneForma project create</dt><dd>In OneForma, create a project (Category = Artificial Intelligence, Sub category = Data Collection..., Task platform = OneForma Tools). Further OneForma menus: Confirm in session.</dd></div><div><dt>One Tools Projects</dt><dd>One Tools, then Projects. Find the project by its OneForma project ID.</dd></div><div><dt>Project members</dt><dd>Resource list, then Project members. Set roles with Roles, then Save roles.</dd></div><div><dt>General configuration</dt><dd>Configuration, then General. Save draft, then Validate and publish.</dd></div><div><dt>Payment and notifications</dt><dd>Configuration, then Payment and Notification center.</dd></div><div><dt>After General is published</dt><dd>The menu shows Booking Workspace, Sessions, Session Tasks, and Session Payments.</dd></div></dl></aside><aside class="guide-panel" aria-label="Who is who"><h3>Who is who</h3><ul class="guide-list"><li><strong>OneForma PM and One Tools Admin / PM:</strong> David</li><li><strong>Watcher (OneForma vs One Tools field match):</strong> Shreya</li><li><strong>Watcher on rate, currency, and unit (1.2 and 1.7):</strong> Saswati</li><li><strong>Staff to add:</strong> Confirm in session (Isha&#x27;s schedulers; Derrell / Bhargav as Moderator). Do not add Zane.</li><li><strong>PM approver for later TC5.7:</strong> Shreya</li></ul></aside></div>
@@ -2519,7 +2535,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
         <div class="tc-assign-picker" data-assign-picker hidden role="listbox" aria-label="Add a person to TC2"></div>
       </div>
     </div>
-    <p class="tc-assign-hint" data-assign-hint>Assignments turn on soon</p>
+    <p class="tc-assign-hint" data-assign-hint><button type="button" class="tc-assign-connect" data-action="open-connect">Connect to the sheet</button> to see and edit assignments</p>
     <p class="tc-assign-status" data-assign-status hidden aria-live="polite"></p>
   </div>
   <div class="guide-intro" data-guide-for="TC2"><aside class="guide-panel guide-warn" aria-label="Use a test project"><h3>Use a test project</h3><p><p><strong>OD_Sesame PRJ-01057 is a real project.</strong> Do not book or invite anyone there. Use a test project.</p></p><p><p>Use test accounts only. Never write a password anywhere on this page, in the sheet, or in Jira.</p></p></aside><aside class="guide-panel" aria-label="Before you start"><h3>Before you start</h3><ul class="guide-list"><li>Scheduling setup starts only after TC1 is published (1.6 and 1.7).</li><li>Venue: UAT Venue LA, America/Los_Angeles. Session type: UAT Lab 60 min, SessionRules, 09:00 to 18:00 Mon to Fri, 2 places per slot, Job ID + rate.</li><li>Confirm in session the venue address to enter, and the booking-window dates to use. Do not use a real production venue.</li><li>Sign in only with your assigned test account from the TEST_Accts tab. Never paste passwords into chat, the sheet, or Jira.</li><li>Name anything you create with your initials, for example UAT-DK-...</li><li>Take a screenshot of every result, and write down venue, session type, Job ID, rate, and the moderator whose hours are set.</li><li>If something does not match You should see, mark the step Fail and note: what you clicked, what you expected, what happened, the screenshot, and the IDs.</li></ul></aside><aside class="guide-panel" aria-label="Where things are in One Tools"><h3>Where things are in One Tools</h3><dl class="guide-where"><div><dt>Venues</dt><dd>Configuration, then Venues, then Add venue.</dd></div><div><dt>Session types</dt><dd>Configuration, then Sessions, then Add Session Type.</dd></div><div><dt>Slot rules and price</dt><dd>On the session type (SessionRules, booking window, and Price). Confirm in session if those fields are on a separate screen.</dd></div><div><dt>Moderators</dt><dd>Resource list, then Moderators, then View. Edit Working Hours, then Save Changes.</dd></div><div><dt>Session tasks</dt><dd>Output, then Session Tasks, then Add task (gate: Before the delivery is submitted).</dd></div><div><dt>Venue address</dt><dd>Confirm in session.</dd></div></dl></aside><aside class="guide-panel" aria-label="Who is who"><h3>Who is who</h3><ul class="guide-list"><li><strong>One Tools PM / Admin:</strong> Shreya</li><li><strong>Watcher, and primary owner of 2.4:</strong> Saswati (she creates the OneForma job ad)</li><li><strong>Moderators whose hours are set:</strong> Derrell and/or Bhargav. Do not use Zane.</li><li><strong>Will use the session type in TC4:</strong> Isha</li></ul></aside></div>
@@ -3156,7 +3172,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
         <div class="tc-assign-picker" data-assign-picker hidden role="listbox" aria-label="Add a person to TC3"></div>
       </div>
     </div>
-    <p class="tc-assign-hint" data-assign-hint>Assignments turn on soon</p>
+    <p class="tc-assign-hint" data-assign-hint><button type="button" class="tc-assign-connect" data-action="open-connect">Connect to the sheet</button> to see and edit assignments</p>
     <p class="tc-assign-status" data-assign-status hidden aria-live="polite"></p>
   </div>
   <div class="guide-intro" data-guide-for="TC3"><aside class="guide-panel guide-warn" aria-label="Use a test project"><h3>Use a test project</h3><p><strong>OD_Sesame PRJ-01057 is a real project.</strong> Do not book or invite anyone there. Use a test project.</p><p>Do not create payment requests in these steps. Use test accounts only. Never write a password anywhere on this page, in the sheet, or in Jira.</p></aside><aside class="guide-panel" aria-label="Before you start"><h3>Before you start</h3><ul class="guide-list"><li>Sign in only with your assigned test account from the TEST_Accts tab. Never use your own real account to book.</li><li>Never paste passwords into chat, the sheet, or Jira.</li><li>Book and invite test accounts only. No real people or real emails.</li><li>Name anything you create with your initials, for example UAT-DK-...</li><li>Take a screenshot of every result, and write down every SES ID you create.</li><li>If something does not match You should see, mark the step Fail and note: what you clicked, what you expected, what happened, the screenshot, and the IDs.</li></ul></aside><aside class="guide-panel" aria-label="Where things are in One Tools"><h3>Where things are in One Tools</h3><dl class="guide-where"><div><dt>Participants</dt><dd>Resource list, then Participants</dd></div><div><dt>Booking Workspace</dt><dd>Scheduling list, then Booking Workspace (tabs: Everyone, To contact, Contacting, Booked, plus the Scheduler assignment tab)</dd></div><div><dt>Participant menu</dt><dd>The ... on a row: Book on behalf, Assign, Remove</dd></div><div><dt>Sessions</dt><dd>Output, then Sessions (Create Session button)</dd></div><div><dt>Session settings</dt><dd>Session configuration (per-slot capacity, group cap) and its Rules section (24 h reschedule and cancel cutoff, no-show limit, portal booking)</dd></div><div><dt>Members and Moderators</dt><dd>Members page (roles PM, Scheduler, Moderator, Viewer). Moderators only see sessions they moderate.</dd></div></dl></aside><aside class="guide-panel" aria-label="Who is who"><h3>Who is who</h3><ul class="guide-list"><li><strong>PM:</strong> Drew, David</li><li><strong>Scheduler:</strong> Isha (second scheduler for 3.6: Alejandra, Mounika, or Minal)</li><li><strong>Participants P1-P4:</strong> Crowd test accounts (Nikhitha, Shilpa, Drew or David as P3; confirm P4 in session)</li></ul></aside><aside class="guide-panel guide-callout" aria-label="PM setup for booking checks"><h3>PM setup for 4.4 and 4.5</h3><p><strong>PM setup before 4.4 and 4.5:</strong> create a session type with a slot capacity of 2. The live slot capacity is 4, so those group and double-booking checks will not work on the live type.</p><p>Also have at least one venue and a moderator with hours set, and confirm the 24 h cutoff in Rules.</p></aside></div>
@@ -3793,7 +3809,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
         <div class="tc-assign-picker" data-assign-picker hidden role="listbox" aria-label="Add a person to TC4"></div>
       </div>
     </div>
-    <p class="tc-assign-hint" data-assign-hint>Assignments turn on soon</p>
+    <p class="tc-assign-hint" data-assign-hint><button type="button" class="tc-assign-connect" data-action="open-connect">Connect to the sheet</button> to see and edit assignments</p>
     <p class="tc-assign-status" data-assign-status hidden aria-live="polite"></p>
   </div>
   <div class="guide-intro" data-guide-for="TC4"><aside class="guide-panel guide-warn" aria-label="Use a test project"><h3>Use a test project</h3><p><strong>OD_Sesame PRJ-01057 is a real project.</strong> Do not book or invite anyone there. Use a test project.</p><p>Do not create payment requests in these steps. Use test accounts only. Never write a password anywhere on this page, in the sheet, or in Jira.</p></aside><aside class="guide-panel" aria-label="Before you start"><h3>Before you start</h3><ul class="guide-list"><li>Sign in only with your assigned test account from the TEST_Accts tab. Never use your own real account to book.</li><li>Never paste passwords into chat, the sheet, or Jira.</li><li>Book and invite test accounts only. No real people or real emails.</li><li>Name anything you create with your initials, for example UAT-DK-...</li><li>Take a screenshot of every result, and write down every SES ID you create.</li><li>If something does not match You should see, mark the step Fail and note: what you clicked, what you expected, what happened, the screenshot, and the IDs.</li></ul></aside><aside class="guide-panel" aria-label="Where things are in One Tools"><h3>Where things are in One Tools</h3><dl class="guide-where"><div><dt>Participants</dt><dd>Resource list, then Participants</dd></div><div><dt>Booking Workspace</dt><dd>Scheduling list, then Booking Workspace (tabs: Everyone, To contact, Contacting, Booked, plus the Scheduler assignment tab)</dd></div><div><dt>Participant menu</dt><dd>The ... on a row: Book on behalf, Assign, Remove</dd></div><div><dt>Sessions</dt><dd>Output, then Sessions (Create Session button)</dd></div><div><dt>Session settings</dt><dd>Session configuration (per-slot capacity, group cap) and its Rules section (24 h reschedule and cancel cutoff, no-show limit, portal booking)</dd></div><div><dt>Members and Moderators</dt><dd>Members page (roles PM, Scheduler, Moderator, Viewer). Moderators only see sessions they moderate.</dd></div></dl></aside><aside class="guide-panel" aria-label="Who is who"><h3>Who is who</h3><ul class="guide-list"><li><strong>PM:</strong> Drew, David</li><li><strong>Scheduler:</strong> Isha (second scheduler for 3.6: Alejandra, Mounika, or Minal)</li><li><strong>Participants P1-P4:</strong> Crowd test accounts (Nikhitha, Shilpa, Drew or David as P3; confirm P4 in session)</li></ul></aside><aside class="guide-panel guide-callout" aria-label="PM setup for booking checks"><h3>PM setup for 4.4 and 4.5</h3><p><strong>PM setup before 4.4 and 4.5:</strong> create a session type with a slot capacity of 2. The live slot capacity is 4, so those group and double-booking checks will not work on the live type.</p><p>Also have at least one venue and a moderator with hours set, and confirm the 24 h cutoff in Rules.</p></aside></div>
@@ -4518,7 +4534,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
         <div class="tc-assign-picker" data-assign-picker hidden role="listbox" aria-label="Add a person to TC5"></div>
       </div>
     </div>
-    <p class="tc-assign-hint" data-assign-hint>Assignments turn on soon</p>
+    <p class="tc-assign-hint" data-assign-hint><button type="button" class="tc-assign-connect" data-action="open-connect">Connect to the sheet</button> to see and edit assignments</p>
     <p class="tc-assign-status" data-assign-status hidden aria-live="polite"></p>
   </div>
   <div class="guide-intro" data-guide-for="TC5"><aside class="guide-panel guide-warn" aria-label="Use a test project"><h3>Use a test project</h3><p><p><strong>OD_Sesame PRJ-01057 is a real project.</strong> Do not book or invite anyone there, and do not create payment requests there. Use a test project.</p></p><p><p>Use test accounts only. Never write a password anywhere on this page, in the sheet, or in Jira.</p></p></aside><aside class="guide-panel" aria-label="Before you start"><h3>Before you start</h3><ul class="guide-list"><li>You need a booked session from TC4 that is due today or in its check-in window. Vendor data: SES-... for P2, that is SES-P2-behalf if timed for Wednesday. The session task must already be active from TC2.6.</li><li>Brief Derrell and Bhargav before these steps. Derrell was not on the 16 Nov call.</li><li>Confirm in session whether check-in is on or manual, whether team delivery applies, who raises payment, and whether the generic delivery upload is the same as TC7.</li><li>Impersonate Andrea as PSA PM only if a higher approval step appears; it is not required to start. AP / BO approval is late and not needed to start.</li><li>Sign in only with your assigned test account from the TEST_Accts tab. Never paste passwords into chat, the sheet, or Jira. Use test accounts only.</li><li>Take a screenshot of every result, and write down every SES ID, Delivery ID, and Payment ID you create.</li><li>If something does not match You should see, mark the step Fail and note: what you clicked, what you expected, what happened, the screenshot, and the IDs.</li></ul></aside><aside class="guide-panel" aria-label="Where things are in One Tools"><h3>Where things are in One Tools</h3><dl class="guide-where"><div><dt>Sessions</dt><dd>Output, then Sessions, then open the session drawer.</dd></div><div><dt>Check-in</dt><dd>Check in the participant, or Manual check-in with a reason when check-in is off. Confirm in session whether check-in is on or manual.</dd></div><div><dt>Start and complete</dt><dd>Start capture, then confirm; Complete session, then confirm. Confirm in session what the UI actually requires.</dd></div><div><dt>Delivery upload</dt><dd>Submissions, then Delivery submissions. Wait for Uploaded and verified, then Submit delivery, then Confirm submit. This is the generic delivery upload unless Bhargav confirms it is the same path as TC7.</dd></div><div><dt>Session payments</dt><dd>Output, then Session Payments, then Needs action.</dd></div><div><dt>OneForma payment record</dt><dd>Confirm in session the exact OneForma screen.</dd></div></dl></aside><aside class="guide-panel" aria-label="Who is who"><h3>Who is who</h3><ul class="guide-list"><li><strong>Moderator:</strong> Derrell (Bhargav as paired moderator / watcher)</li><li><strong>PM approval:</strong> Shreya</li><li><strong>Watchers on rate, currency, and the OneForma record:</strong> Saswati, and David on the mismatch check</li><li><strong>P2 Crowd tester:</strong> May need to be present at check-in, and may receive the completed email</li><li><strong>Andrea as PSA PM:</strong> Only if a higher approval step appears; not required to start</li></ul></aside></div>
@@ -5331,7 +5347,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
         <div class="tc-assign-picker" data-assign-picker hidden role="listbox" aria-label="Add a person to TC6"></div>
       </div>
     </div>
-    <p class="tc-assign-hint" data-assign-hint>Assignments turn on soon</p>
+    <p class="tc-assign-hint" data-assign-hint><button type="button" class="tc-assign-connect" data-action="open-connect">Connect to the sheet</button> to see and edit assignments</p>
     <p class="tc-assign-status" data-assign-status hidden aria-live="polite"></p>
   </div>
   <div class="guide-intro" data-guide-for="TC6"><aside class="guide-panel guide-warn" aria-label="Use a test project"><h3>Use a test project</h3><p><p><strong>OD_Sesame PRJ-01057 is a real project.</strong> Do not book, invite, cancel, or mark no-show there. Use a test project.</p></p><p><p>Use test accounts only. Never write a password anywhere on this page, in the sheet, or in Jira.</p></p></aside><aside class="guide-panel" aria-label="Before you start"><h3>Before you start</h3><ul class="guide-list"><li>You need at least 4 booked sessions more than 24 h ahead, and one inside 24 h, from TC4.8. The reschedule / cancel cutoff is 24 h (default). Use the labeled sessions SES-R, SES-C, SES-NS, and SES-cut.</li><li>Brief Isha before these steps. Staff reschedule (6.2) must be done by a scheduler.</li><li>Do 6.3 as a pair in the daily session, 11:30-12:00 PT.</li><li>Friday 20 Nov, 11:30 AM PT readiness check: walk the TC6 audit trail together (6.8).</li><li>Do not remove a persona still needed for a main-path re-test. Confirm in session whom to remove.</li><li>Sign in only with your assigned test account from the TEST_Accts tab. Never paste passwords into chat, the sheet, or Jira. Book and invite test accounts only.</li><li>Take a screenshot of every result, and write down every SES ID you use.</li><li>If something does not match You should see, mark the step Fail and note: what you clicked, what you expected, what happened, the screenshot, and the IDs.</li></ul></aside><aside class="guide-panel" aria-label="Where things are in One Tools"><h3>Where things are in One Tools</h3><dl class="guide-where"><div><dt>Participant reschedule or cancel from email</dt><dd>The manage my session link in the confirmation email (from TC4.6).</dd></div><div><dt>Staff reschedule</dt><dd>In the workspace. Confirm in session the exact control.</dd></div><div><dt>No-show</dt><dd>Update status, then No show, with a reason.</dd></div><div><dt>Remove and restore</dt><dd>Log contact drawer, then Remove from the project (reason and justification), then Restore.</dd></div><div><dt>History</dt><dd>The participant History and the Session record.</dd></div><div><dt>Cutoff</dt><dd>Session Rules: 24 h reschedule and cancel cutoff. Confirm the cutoff is still 24 h before 6.3.</dd></div></dl></aside><aside class="guide-panel" aria-label="Who is who"><h3>Who is who</h3><ul class="guide-list"><li><strong>Scheduler:</strong> Isha</li><li><strong>Participants (Crowd):</strong> Nikhitha or Shilpa</li><li><strong>Moderator:</strong> Derrell (Bhargav as pair)</li><li><strong>PM:</strong> Shreya</li><li><strong>Watchers:</strong> Drew or David (especially 6.3 and 6.7)</li></ul></aside></div>
@@ -6056,7 +6072,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
         <div class="tc-assign-picker" data-assign-picker hidden role="listbox" aria-label="Add a person to TC7"></div>
       </div>
     </div>
-    <p class="tc-assign-hint" data-assign-hint>Assignments turn on soon</p>
+    <p class="tc-assign-hint" data-assign-hint><button type="button" class="tc-assign-connect" data-action="open-connect">Connect to the sheet</button> to see and edit assignments</p>
     <p class="tc-assign-status" data-assign-status hidden aria-live="polite"></p>
   </div>
   <div class="guide-intro" data-guide-for="TC7"><aside class="guide-panel guide-warn" aria-label="Use a test project"><h3>Use a test project</h3><p><p><strong>OD_Sesame PRJ-01057 is a real project.</strong> Do not upload to or book on that project. Use a test project.</p></p><p><p>Use test accounts only. Never write a password anywhere on this page, in the sheet, or in Jira.</p></p></aside><aside class="guide-panel" aria-label="Before you start"><h3>Before you start</h3><ul class="guide-list"><li>This case is proposed, pending Bhargav confirm. All steps below are confirm in session.</li><li>It was added on the 16 Nov call because the vendor cases had no Sesame tar / inspection-report upload, which the team called a gap for moderators.</li><li>Do not invent clicks. If the feature is still missing, stop and follow up rather than inventing a path.</li><li>Do not treat the generic delivery upload in TC5.5 as this case until Bhargav confirms it is the same path.</li><li>Confirm in session what fixture to use (a sample tar and inspection report). Do not put credentials on this page, in the sheet, or in Jira.</li><li>Sign in only with your assigned test account from the TEST_Accts tab. Never paste passwords into chat, the sheet, or Jira.</li><li>Take a screenshot of every result, and write down the upload / report ID and the linked Session ID.</li><li>If something does not match You should see, mark the step Fail and note: what you clicked, what you expected, what happened, the screenshot, and the IDs.</li></ul></aside><aside class="guide-panel" aria-label="Where things are in One Tools"><h3>Where things are in One Tools</h3><dl class="guide-where"><div><dt>Upload entry point</dt><dd>Confirm in session. That is the work of 7.1.</dd></div><div><dt>Generic delivery upload (TC5.5)</dt><dd>Submissions, then Delivery submissions. Confirm in session whether TC7 is the same path or a separate one.</dd></div><div><dt>Where PM and Moderator find the linked file</dt><dd>Confirm in session.</dd></div></dl></aside><aside class="guide-panel" aria-label="Who is who"><h3>Who is who</h3><ul class="guide-list"><li><strong>Owner:</strong> David</li><li><strong>Confirm with:</strong> Bhargav</li><li><strong>Alternate uploader / observer:</strong> Derrell</li><li><strong>PM trying to open the same report:</strong> Shreya</li></ul></aside><aside class="guide-panel guide-callout" aria-label="Pending confirm"><h3>Pending confirm</h3><p>All TC7 steps are confirm in session. If the upload entry point is still missing, log that as a finding rather than inventing clicks.</p></aside></div>
@@ -7663,6 +7679,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let stepMap = {};
   let assignMap = {};
   let assignmentsEnabled = false;
+  let readFailed = false;
   let assignInflight = {};
   let assignStatusTimer = {};
 
@@ -7893,17 +7910,27 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     if (addWrap) addWrap.hidden = !writable;
     if (hint) {
-      if (!enabled) {
+      hint.classList.remove("is-error");
+      if (!connected) {
         hint.hidden = false;
-        hint.textContent = "Assignments turn on soon";
-      } else if (!connected) {
+        hint.replaceChildren();
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "tc-assign-connect";
+        btn.setAttribute("data-action", "open-connect");
+        btn.textContent = "Connect to the sheet";
+        hint.appendChild(btn);
+        hint.appendChild(document.createTextNode(" to see and edit assignments"));
+      } else if (readFailed || !enabled) {
         hint.hidden = false;
-        hint.textContent = "Connect to the sheet to assign people or see live assignments.";
+        hint.classList.add("is-error");
+        hint.textContent = "Couldn't load assignments";
       } else if (!writable) {
         hint.hidden = false;
         hint.textContent = "Add a Sync link to assign people.";
       } else {
         hint.hidden = true;
+        hint.textContent = "";
       }
     }
     const pickerBtn = root.querySelector("[data-action=open-assign-picker]");
@@ -8054,7 +8081,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function setReadError(show) {
+    readFailed = !!show;
     $all("[data-read-error]").forEach(function (el) { el.hidden = !show; });
+    paintAllAssign();
   }
 
   function fillForm(cfg) {
@@ -8189,6 +8218,18 @@ document.addEventListener("DOMContentLoaded", function () {
     return true;
   }
 
+  function openConnect() {
+    const box = document.getElementById("uat-connect-box");
+    if (!box) return;
+    box.open = true;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const top = box.getBoundingClientRect().top + window.pageYOffset - 12;
+    window.scrollTo({ top: Math.max(0, top), behavior: reduce ? "auto" : "smooth" });
+    const form = document.getElementById("uat-connect-form");
+    const first = form && (form.querySelector('input[name="syncUrl"]') || form.querySelector("input"));
+    if (first && typeof first.focus === "function") first.focus({ preventScroll: true });
+  }
+
   function disconnect() {
     stopPoll();
     clearCfg();
@@ -8209,6 +8250,11 @@ document.addEventListener("DOMContentLoaded", function () {
       if (e.target.closest("[data-action=disconnect]")) {
         e.preventDefault();
         disconnect();
+        return;
+      }
+      if (e.target.closest("[data-action=open-connect]")) {
+        e.preventDefault();
+        openConnect();
         return;
       }
       const opener = e.target.closest("[data-action=open-assign-picker]");
