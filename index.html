@@ -1709,6 +1709,16 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
   .wrap { padding-right: 0; }
 }
 
+.sync-note {
+  margin: 0.25rem 0 0;
+  font-size: 0.8125rem;
+  color: var(--ink-soft);
+  text-align: right;
+}
+.sync-note[hidden] { display: none; }
+.sync-note.is-error { color: var(--danger); }
+@media print { .sync-note { display: none !important; } }
+
   </style>
 </head>
 <body>
@@ -1722,7 +1732,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
         <span data-theme-label>Light mode</span>
       </button>
     </div>
-    <p class="lede">UAT window: 16 to 29 Nov 2026. Follow the run order, pass IDs at each handoff, and mark results on this device. This page does not write back to the SharePoint sheet.</p>
+    <p class="lede">UAT window: 16 to 29 Nov 2026. Follow the run order, pass IDs at each handoff, and mark results here. Connect to the sheet and your marks sync to it; otherwise they stay on this device.</p>
     <ul class="dates">
       <li class="date-pill"><strong>Main path end to end</strong> Wed 18 Nov</li>
       <li class="date-pill"><strong>Readiness check</strong> Fri 20 Nov, 11:30 AM PT</li>
@@ -1853,12 +1863,12 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
   <div class="jumpbar">
     <div class="jumpbar-inner wrap">
       <div id="results-count" aria-live="polite">49 steps</div>
-      <p class="device-note">Pass, fail, and blocked marks are stored only in this browser on this device. They are not written to the SharePoint sheet.</p>
+      <p class="device-note" data-sync-device-note>Not connected: pass, fail, and blocked marks stay only in this browser. Connect to the sheet to sync them.</p>
       <p class="read-error" data-read-error hidden>Couldn't load filed tickets</p>
     </div>
   </div>
 
-  <section class="wrap" aria-label="Progress on this device">
+  <section class="wrap" aria-label="Progress">
     <div class="prog prog-overall">
       <div class="prog-label">
         <span class="prog-name">All steps</span>
@@ -1912,12 +1922,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC1-1-1">
-        <legend>Local status for 1.1, stored on this device only</legend>
+        <legend>Status for 1.1, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="1.1" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC1-1-1" aria-expanded="false" aria-controls="bug-step-TC1-1-1"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC1-1-1" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC1-1-1" hidden>View ticket</button>
@@ -2000,12 +2011,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC1-1-2">
-        <legend>Local status for 1.2, stored on this device only</legend>
+        <legend>Status for 1.2, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="1.2" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC1-1-2" aria-expanded="false" aria-controls="bug-step-TC1-1-2"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC1-1-2" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC1-1-2" hidden>View ticket</button>
@@ -2088,12 +2100,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC1-1-3">
-        <legend>Local status for 1.3, stored on this device only</legend>
+        <legend>Status for 1.3, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="1.3" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC1-1-3" aria-expanded="false" aria-controls="bug-step-TC1-1-3"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC1-1-3" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC1-1-3" hidden>View ticket</button>
@@ -2176,12 +2189,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC1-1-4">
-        <legend>Local status for 1.4, stored on this device only</legend>
+        <legend>Status for 1.4, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="1.4" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC1-1-4" aria-expanded="false" aria-controls="bug-step-TC1-1-4"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC1-1-4" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC1-1-4" hidden>View ticket</button>
@@ -2265,12 +2279,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC1-1-5">
-        <legend>Local status for 1.5, stored on this device only</legend>
+        <legend>Status for 1.5, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="1.5" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC1-1-5" aria-expanded="false" aria-controls="bug-step-TC1-1-5"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC1-1-5" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC1-1-5" hidden>View ticket</button>
@@ -2353,12 +2368,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC1-1-6">
-        <legend>Local status for 1.6, stored on this device only</legend>
+        <legend>Status for 1.6, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="1.6" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC1-1-6" aria-expanded="false" aria-controls="bug-step-TC1-1-6"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC1-1-6" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC1-1-6" hidden>View ticket</button>
@@ -2441,12 +2457,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC1-1-7">
-        <legend>Local status for 1.7, stored on this device only</legend>
+        <legend>Status for 1.7, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="1.7" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC1-1-7" aria-expanded="false" aria-controls="bug-step-TC1-1-7"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC1-1-7" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC1-1-7" hidden>View ticket</button>
@@ -2550,12 +2567,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC2-2-1">
-        <legend>Local status for 2.1, stored on this device only</legend>
+        <legend>Status for 2.1, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="2.1" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC2-2-1" aria-expanded="false" aria-controls="bug-step-TC2-2-1"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC2-2-1" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC2-2-1" hidden>View ticket</button>
@@ -2638,12 +2656,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC2-2-2">
-        <legend>Local status for 2.2, stored on this device only</legend>
+        <legend>Status for 2.2, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="2.2" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC2-2-2" aria-expanded="false" aria-controls="bug-step-TC2-2-2"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC2-2-2" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC2-2-2" hidden>View ticket</button>
@@ -2726,12 +2745,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC2-2-3">
-        <legend>Local status for 2.3, stored on this device only</legend>
+        <legend>Status for 2.3, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="2.3" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC2-2-3" aria-expanded="false" aria-controls="bug-step-TC2-2-3"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC2-2-3" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC2-2-3" hidden>View ticket</button>
@@ -2814,12 +2834,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC2-2-4">
-        <legend>Local status for 2.4, stored on this device only</legend>
+        <legend>Status for 2.4, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="2.4" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC2-2-4" aria-expanded="false" aria-controls="bug-step-TC2-2-4"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC2-2-4" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC2-2-4" hidden>View ticket</button>
@@ -2902,12 +2923,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC2-2-5">
-        <legend>Local status for 2.5, stored on this device only</legend>
+        <legend>Status for 2.5, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="2.5" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC2-2-5" aria-expanded="false" aria-controls="bug-step-TC2-2-5"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC2-2-5" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC2-2-5" hidden>View ticket</button>
@@ -2990,12 +3012,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC2-2-6">
-        <legend>Local status for 2.6, stored on this device only</legend>
+        <legend>Status for 2.6, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="2.6" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC2-2-6" aria-expanded="false" aria-controls="bug-step-TC2-2-6"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC2-2-6" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC2-2-6" hidden>View ticket</button>
@@ -3078,12 +3101,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC2-2-7">
-        <legend>Local status for 2.7, stored on this device only</legend>
+        <legend>Status for 2.7, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="2.7" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC2-2-7" aria-expanded="false" aria-controls="bug-step-TC2-2-7"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC2-2-7" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC2-2-7" hidden>View ticket</button>
@@ -3187,12 +3211,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC3-3-1">
-        <legend>Local status for 3.1, stored on this device only</legend>
+        <legend>Status for 3.1, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="3.1" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC3-3-1" aria-expanded="false" aria-controls="bug-step-TC3-3-1"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC3-3-1" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC3-3-1" hidden>View ticket</button>
@@ -3275,12 +3300,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC3-3-2">
-        <legend>Local status for 3.2, stored on this device only</legend>
+        <legend>Status for 3.2, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="3.2" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC3-3-2" aria-expanded="false" aria-controls="bug-step-TC3-3-2"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC3-3-2" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC3-3-2" hidden>View ticket</button>
@@ -3363,12 +3389,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC3-3-3">
-        <legend>Local status for 3.3, stored on this device only</legend>
+        <legend>Status for 3.3, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="3.3" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC3-3-3" aria-expanded="false" aria-controls="bug-step-TC3-3-3"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC3-3-3" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC3-3-3" hidden>View ticket</button>
@@ -3451,12 +3478,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC3-3-4">
-        <legend>Local status for 3.4, stored on this device only</legend>
+        <legend>Status for 3.4, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="3.4" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC3-3-4" aria-expanded="false" aria-controls="bug-step-TC3-3-4"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC3-3-4" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC3-3-4" hidden>View ticket</button>
@@ -3539,12 +3567,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC3-3-5">
-        <legend>Local status for 3.5, stored on this device only</legend>
+        <legend>Status for 3.5, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="3.5" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC3-3-5" aria-expanded="false" aria-controls="bug-step-TC3-3-5"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC3-3-5" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC3-3-5" hidden>View ticket</button>
@@ -3627,12 +3656,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC3-3-6">
-        <legend>Local status for 3.6, stored on this device only</legend>
+        <legend>Status for 3.6, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="3.6" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC3-3-6" aria-expanded="false" aria-controls="bug-step-TC3-3-6"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC3-3-6" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC3-3-6" hidden>View ticket</button>
@@ -3715,12 +3745,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC3-3-7">
-        <legend>Local status for 3.7, stored on this device only</legend>
+        <legend>Status for 3.7, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="3.7" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC3-3-7" aria-expanded="false" aria-controls="bug-step-TC3-3-7"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC3-3-7" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC3-3-7" hidden>View ticket</button>
@@ -3824,12 +3855,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC4-4-1">
-        <legend>Local status for 4.1, stored on this device only</legend>
+        <legend>Status for 4.1, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="4.1" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC4-4-1" aria-expanded="false" aria-controls="bug-step-TC4-4-1"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC4-4-1" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC4-4-1" hidden>View ticket</button>
@@ -3912,12 +3944,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC4-4-2">
-        <legend>Local status for 4.2, stored on this device only</legend>
+        <legend>Status for 4.2, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="4.2" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC4-4-2" aria-expanded="false" aria-controls="bug-step-TC4-4-2"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC4-4-2" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC4-4-2" hidden>View ticket</button>
@@ -4000,12 +4033,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC4-4-3">
-        <legend>Local status for 4.3, stored on this device only</legend>
+        <legend>Status for 4.3, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="4.3" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC4-4-3" aria-expanded="false" aria-controls="bug-step-TC4-4-3"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC4-4-3" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC4-4-3" hidden>View ticket</button>
@@ -4088,12 +4122,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC4-4-4">
-        <legend>Local status for 4.4, stored on this device only</legend>
+        <legend>Status for 4.4, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="4.4" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC4-4-4" aria-expanded="false" aria-controls="bug-step-TC4-4-4"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC4-4-4" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC4-4-4" hidden>View ticket</button>
@@ -4176,12 +4211,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC4-4-5">
-        <legend>Local status for 4.5, stored on this device only</legend>
+        <legend>Status for 4.5, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="4.5" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC4-4-5" aria-expanded="false" aria-controls="bug-step-TC4-4-5"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC4-4-5" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC4-4-5" hidden>View ticket</button>
@@ -4264,12 +4300,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC4-4-6">
-        <legend>Local status for 4.6, stored on this device only</legend>
+        <legend>Status for 4.6, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="4.6" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC4-4-6" aria-expanded="false" aria-controls="bug-step-TC4-4-6"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC4-4-6" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC4-4-6" hidden>View ticket</button>
@@ -4352,12 +4389,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC4-4-7">
-        <legend>Local status for 4.7, stored on this device only</legend>
+        <legend>Status for 4.7, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="4.7" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC4-4-7" aria-expanded="false" aria-controls="bug-step-TC4-4-7"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC4-4-7" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC4-4-7" hidden>View ticket</button>
@@ -4440,12 +4478,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC4-4-8">
-        <legend>Local status for 4.8, stored on this device only</legend>
+        <legend>Status for 4.8, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="4.8" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC4-4-8" aria-expanded="false" aria-controls="bug-step-TC4-4-8"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC4-4-8" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC4-4-8" hidden>View ticket</button>
@@ -4549,12 +4588,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC5-5-1">
-        <legend>Local status for 5.1, stored on this device only</legend>
+        <legend>Status for 5.1, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="5.1" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC5-5-1" aria-expanded="false" aria-controls="bug-step-TC5-5-1"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC5-5-1" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC5-5-1" hidden>View ticket</button>
@@ -4637,12 +4677,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC5-5-2">
-        <legend>Local status for 5.2, stored on this device only</legend>
+        <legend>Status for 5.2, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="5.2" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC5-5-2" aria-expanded="false" aria-controls="bug-step-TC5-5-2"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC5-5-2" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC5-5-2" hidden>View ticket</button>
@@ -4725,12 +4766,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC5-5-3">
-        <legend>Local status for 5.3, stored on this device only</legend>
+        <legend>Status for 5.3, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="5.3" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC5-5-3" aria-expanded="false" aria-controls="bug-step-TC5-5-3"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC5-5-3" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC5-5-3" hidden>View ticket</button>
@@ -4813,12 +4855,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC5-5-4">
-        <legend>Local status for 5.4, stored on this device only</legend>
+        <legend>Status for 5.4, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="5.4" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC5-5-4" aria-expanded="false" aria-controls="bug-step-TC5-5-4"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC5-5-4" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC5-5-4" hidden>View ticket</button>
@@ -4901,12 +4944,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC5-5-5">
-        <legend>Local status for 5.5, stored on this device only</legend>
+        <legend>Status for 5.5, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="5.5" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC5-5-5" aria-expanded="false" aria-controls="bug-step-TC5-5-5"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC5-5-5" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC5-5-5" hidden>View ticket</button>
@@ -4989,12 +5033,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC5-5-6">
-        <legend>Local status for 5.6, stored on this device only</legend>
+        <legend>Status for 5.6, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="5.6" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC5-5-6" aria-expanded="false" aria-controls="bug-step-TC5-5-6"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC5-5-6" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC5-5-6" hidden>View ticket</button>
@@ -5077,12 +5122,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC5-5-7">
-        <legend>Local status for 5.7, stored on this device only</legend>
+        <legend>Status for 5.7, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="5.7" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC5-5-7" aria-expanded="false" aria-controls="bug-step-TC5-5-7"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC5-5-7" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC5-5-7" hidden>View ticket</button>
@@ -5165,12 +5211,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC5-5-8">
-        <legend>Local status for 5.8, stored on this device only</legend>
+        <legend>Status for 5.8, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="5.8" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC5-5-8" aria-expanded="false" aria-controls="bug-step-TC5-5-8"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC5-5-8" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC5-5-8" hidden>View ticket</button>
@@ -5253,12 +5300,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC5-5-9">
-        <legend>Local status for 5.9, stored on this device only</legend>
+        <legend>Status for 5.9, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="5.9" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC5-5-9" aria-expanded="false" aria-controls="bug-step-TC5-5-9"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC5-5-9" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC5-5-9" hidden>View ticket</button>
@@ -5362,12 +5410,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC6-6-1">
-        <legend>Local status for 6.1, stored on this device only</legend>
+        <legend>Status for 6.1, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="6.1" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC6-6-1" aria-expanded="false" aria-controls="bug-step-TC6-6-1"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC6-6-1" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC6-6-1" hidden>View ticket</button>
@@ -5450,12 +5499,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC6-6-2">
-        <legend>Local status for 6.2, stored on this device only</legend>
+        <legend>Status for 6.2, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="6.2" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC6-6-2" aria-expanded="false" aria-controls="bug-step-TC6-6-2"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC6-6-2" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC6-6-2" hidden>View ticket</button>
@@ -5538,12 +5588,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC6-6-3">
-        <legend>Local status for 6.3, stored on this device only</legend>
+        <legend>Status for 6.3, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="6.3" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC6-6-3" aria-expanded="false" aria-controls="bug-step-TC6-6-3"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC6-6-3" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC6-6-3" hidden>View ticket</button>
@@ -5626,12 +5677,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC6-6-4">
-        <legend>Local status for 6.4, stored on this device only</legend>
+        <legend>Status for 6.4, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="6.4" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC6-6-4" aria-expanded="false" aria-controls="bug-step-TC6-6-4"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC6-6-4" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC6-6-4" hidden>View ticket</button>
@@ -5714,12 +5766,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC6-6-5">
-        <legend>Local status for 6.5, stored on this device only</legend>
+        <legend>Status for 6.5, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="6.5" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC6-6-5" aria-expanded="false" aria-controls="bug-step-TC6-6-5"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC6-6-5" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC6-6-5" hidden>View ticket</button>
@@ -5802,12 +5855,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC6-6-6">
-        <legend>Local status for 6.6, stored on this device only</legend>
+        <legend>Status for 6.6, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="6.6" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC6-6-6" aria-expanded="false" aria-controls="bug-step-TC6-6-6"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC6-6-6" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC6-6-6" hidden>View ticket</button>
@@ -5890,12 +5944,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC6-6-7">
-        <legend>Local status for 6.7, stored on this device only</legend>
+        <legend>Status for 6.7, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="6.7" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC6-6-7" aria-expanded="false" aria-controls="bug-step-TC6-6-7"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC6-6-7" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC6-6-7" hidden>View ticket</button>
@@ -5978,12 +6033,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC6-6-8">
-        <legend>Local status for 6.8, stored on this device only</legend>
+        <legend>Status for 6.8, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="6.8" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC6-6-8" aria-expanded="false" aria-controls="bug-step-TC6-6-8"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC6-6-8" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC6-6-8" hidden>View ticket</button>
@@ -6087,12 +6143,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC7-7-1">
-        <legend>Local status for 7.1, stored on this device only</legend>
+        <legend>Status for 7.1, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="7.1" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC7-7-1" aria-expanded="false" aria-controls="bug-step-TC7-7-1"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC7-7-1" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC7-7-1" hidden>View ticket</button>
@@ -6175,12 +6232,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC7-7-2">
-        <legend>Local status for 7.2, stored on this device only</legend>
+        <legend>Status for 7.2, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="7.2" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC7-7-2" aria-expanded="false" aria-controls="bug-step-TC7-7-2"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC7-7-2" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC7-7-2" hidden>View ticket</button>
@@ -6263,12 +6321,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     </button>
     <div class="bug-wrap">
       <fieldset class="status" data-for="step-TC7-7-3">
-        <legend>Local status for 7.3, stored on this device only</legend>
+        <legend>Status for 7.3, <span data-sync-label>this device only, connect to sync</span></legend>
         <button type="button" class="status-btn" data-val="unset" aria-pressed="true">Not marked</button>
         <button type="button" class="status-btn" data-val="pass" aria-pressed="false">Pass</button>
         <button type="button" class="status-btn" data-val="fail" aria-pressed="false">Fail</button>
         <button type="button" class="status-btn" data-val="blocked" aria-pressed="false">Blocked</button>
       </fieldset>
+      <p class="sync-note" data-sync-for="7.3" role="status" aria-live="polite" hidden></p>
       <button type="button" class="bug-chip" data-action="toggle-bug" data-for="step-TC7-7-3" aria-expanded="false" aria-controls="bug-step-TC7-7-3"><span class="bug-chip-label">Record a bug</span><span class="example-tag" hidden>Example</span></button>
       <a class="filed-chip" data-filed-for="step-TC7-7-3" hidden target="_blank" rel="noopener noreferrer">Filed</a>
       <button type="button" class="bug-btn primary" data-action="view-jira" data-filed-view data-for="step-TC7-7-3" hidden>View ticket</button>
@@ -6369,7 +6428,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
   </nav>
 
   <footer class="page-foot wrap">
-    <p>Source: TC_By_Owner tab in UAT_One Tools, plus the 16 Nov planning call. Status marks stay on this device. Do not paste account passwords or personal email addresses into notes or tickets from this page.</p>
+    <p>Source: TC_By_Owner tab in UAT_One Tools, plus the 16 Nov planning call. Status marks sync to the sheet only after you connect; otherwise they stay on this device. Do not paste account passwords or personal email addresses into notes or tickets from this page.</p>
     <ul class="jira-links">
       <li><a href="https://centific-idc.atlassian.net/jira/software/c/projects/OV2S/boards/1596">UAT Feedback board (OV2S)</a></li>
       <li><a href="https://centific-idc.atlassian.net/jira/dashboards/13598">Ticket status dashboard</a></li>
@@ -6821,6 +6880,24 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     paintStatus(id);
     updateProgress();
     if (state.status) apply({ animate: false });
+    if (window.UAT_SYNC && typeof window.UAT_SYNC.pushStatus === "function") window.UAT_SYNC.pushStatus(id);
+  }
+
+  // Sheet read-back: sheet wins once synced. updates is {stepElId: "pass"|"fail"|"blocked"|"unset"}.
+  function applyStatusUpdates(updates) {
+    const ids = Object.keys(updates || {});
+    if (!ids.length) return;
+    const map = loadStatus();
+    ids.forEach(function (id) {
+      const val = updates[id];
+      if (val === "unset" || !val) delete map[id];
+      else map[id] = val;
+    });
+    saveStatus(map);
+    cache.clear();
+    ids.forEach(paintStatus);
+    updateProgress();
+    if (state.status) apply({ animate: false });
   }
 
   function paintStatus(id) {
@@ -6971,7 +7048,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     apply({ animate: false });
   }
 
-  window.UAT_PAGE = { refreshPeople: refreshPeople, peopleOf: peopleOf };
+  window.UAT_PAGE = { refreshPeople: refreshPeople, peopleOf: peopleOf, getStatuses: loadStatus, applyStatusUpdates: applyStatusUpdates };
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
   else init();
@@ -7062,6 +7139,7 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
   }
   function setBug(id, patch) {
     const all = loadAll();
+    const prevTicket = String((getBug(id) || {}).ticket || "").trim().toUpperCase();
     const rec = Object.assign({}, getBug(id), patch);
     const has = !!(rec.ticket || rec.description || rec.fbId || rec.severity || rec.scope || (rec.title && rec.title !== ((window.UAT_MODEL && window.UAT_MODEL.steps && window.UAT_MODEL.steps[id]) || {}).scenario));
     rec.raised = !!(has || rec.ticket || rec.description || rec.fbId || rec.raised);
@@ -7073,6 +7151,10 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     }
     saveAll(all);
     paintBug(id);
+    const nextTicket = String(rec.ticket || "").trim().toUpperCase();
+    if (nextTicket && nextTicket !== prevTicket && window.UAT_SYNC && typeof window.UAT_SYNC.pushJira === "function") {
+      window.UAT_SYNC.pushJira(id, nextTicket);
+    }
     return rec;
   }
   function hasBug(rec, el) {
@@ -7682,6 +7764,13 @@ document.addEventListener("DOMContentLoaded", function () {
   let readFailed = false;
   let assignInflight = {};
   let assignStatusTimer = {};
+  const QUEUE_KEY = "one-tools-uat-sync-queue-v1";
+  const BACKFILL_KEY = "one-tools-uat-sync-backfill-v1";
+  const JIRA_KEY_RE = /^[A-Z][A-Z0-9]+-\d+$/;
+  let flushing = false;
+  let flushTimer = null;
+  let writeEpoch = 0;
+  const syncNoteTimer = {};
 
   const PEOPLE = window.UAT_PEOPLE || [];
 
@@ -8100,6 +8189,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const disconnectBtns = $all("[data-action=disconnect]");
     const connected = !!(cfg && cfg.code && (cfg.readUrl || cfg.url));
     disconnectBtns.forEach(function (b) { b.hidden = !connected; });
+    paintSyncLabels();
     if (!connected) {
       setSummary("Connect to sheet");
       setStatus("Not connected. Marks stay on this device.");
@@ -8107,12 +8197,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     const who = cfg.tester ? ("Connected as " + cfg.tester) : "Connected";
     setSummary(who);
-    if (cfg.readUrl) setStatus("Connected. Filed tickets refresh while this tab is visible.");
-    else setStatus("Connected. Add a Read link to show filed tickets on each step.");
+    if (cfg.url && cfg.readUrl) setStatus("Connected. Your marks sync to the sheet, and filed tickets and others' marks refresh while this tab is visible.");
+    else if (cfg.url) setStatus("Connected. Your marks sync to the sheet. Add a Read link to show filed tickets and others' marks.");
+    else setStatus("Connected read only. Marks stay on this device. Add a Sync link to share them.");
     paintAllAssign();
   }
 
-  function applyRead(rows) {
+  function applyRead(rows, opts) {
+    const stale = !!(opts && opts.epoch !== undefined && opts.epoch !== writeEpoch);
     const adapted = AssignmentAdapter.fromRead(rows);
     const next = {};
     (adapted.steps || []).forEach(function (row) {
@@ -8131,6 +8223,8 @@ document.addEventListener("DOMContentLoaded", function () {
       if (window.UAT_BUGS && window.UAT_BUGS.paintFiled) window.UAT_BUGS.paintFiled(el.id);
     });
     applyAssignmentsFromRead(adapted.assignments);
+    if (!stale) mergeSheetStatuses(rows);
+    paintSyncLabels();
   }
 
   function clearRead() {
@@ -8148,6 +8242,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function fetchRead() {
     const cfg = getCfg();
     if (!cfg || !cfg.readUrl || !cfg.code) return Promise.resolve(null);
+    const epoch = writeEpoch;
     return fetch(cfg.readUrl, {
       method: "POST",
       headers: { "Content-Type": "text/plain;charset=UTF-8" },
@@ -8165,7 +8260,7 @@ document.addEventListener("DOMContentLoaded", function () {
           return null;
         }
         setReadError(false);
-        applyRead(data);
+        applyRead(data, { epoch: epoch });
         return data;
       }, function () {
         setReadError(true);
@@ -8216,6 +8311,232 @@ document.addEventListener("DOMContentLoaded", function () {
     paintConnect();
     startPoll();
     return true;
+  }
+
+  // ---- Step status and Jira writes: queue, retry, backfill ----
+  function readJson(key, fallback) {
+    try {
+      const v = JSON.parse(localStorage.getItem(key) || "");
+      return v == null ? fallback : v;
+    } catch (e) { return fallback; }
+  }
+  function writeJson(key, value) {
+    try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) {}
+  }
+  function loadQueue() {
+    const q = readJson(QUEUE_KEY, []);
+    return Array.isArray(q) ? q : [];
+  }
+  function saveQueue(q) { writeJson(QUEUE_KEY, q); }
+  function stepElFor(stepId) {
+    return document.querySelector('.step[data-step="' + CSS.escape(stepId) + '"]');
+  }
+  function statusWord(raw) {
+    const v = String(raw || "").toLowerCase();
+    return v === "pass" ? "Pass" : v === "fail" ? "Fail" : v === "blocked" ? "Blocked" : "";
+  }
+  function localWord(raw) { return statusWord(raw); }
+  function canSyncSteps(cfg) {
+    cfg = cfg || getCfg();
+    return !!(cfg && cfg.url && cfg.code);
+  }
+  function queuedStepIds() {
+    const out = {};
+    loadQueue().forEach(function (it) { if (it && it.stepId) out[it.stepId] = true; });
+    return out;
+  }
+
+  function setSyncNote(stepId, text, isError) {
+    const note = document.querySelector('[data-sync-for="' + CSS.escape(stepId) + '"]');
+    if (!note) return;
+    if (syncNoteTimer[stepId]) clearTimeout(syncNoteTimer[stepId]);
+    if (!text) {
+      note.hidden = true;
+      note.textContent = "";
+      note.classList.remove("is-error");
+      return;
+    }
+    note.hidden = false;
+    note.textContent = text;
+    note.classList.toggle("is-error", !!isError);
+    if (text === "Saved") {
+      syncNoteTimer[stepId] = setTimeout(function () {
+        if (note.textContent === "Saved") note.hidden = true;
+      }, 2500);
+    }
+  }
+
+  function paintSyncLabels() {
+    const cfg = getCfg();
+    const synced = canSyncSteps(cfg);
+    const label = synced ? "synced to the sheet" : (isConnected(cfg) ? "this device only, add a Sync link to share" : "this device only, connect to sync");
+    $all("[data-sync-label]").forEach(function (el) { el.textContent = label; });
+    $all("[data-sync-device-note]").forEach(function (el) {
+      el.textContent = synced
+        ? "Connected: pass, fail, and blocked marks sync to the sheet, and the sheet's marks show here."
+        : (isConnected(cfg)
+          ? "Read only: marks stay on this device until you add a Sync link in Connect to sheet."
+          : "Not connected: pass, fail, and blocked marks stay only in this browser. Connect to the sheet to sync them.");
+    });
+  }
+
+  function enqueueWrite(kind, stepId, body) {
+    const q = loadQueue().filter(function (it) { return !(it.kind === kind && it.stepId === stepId); });
+    q.push({ kind: kind, stepId: stepId, body: body, tries: 0 });
+    saveQueue(q);
+    writeEpoch += 1;
+  }
+
+  function sendWrite(cfg, body) {
+    return fetch(cfg.url, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=UTF-8" },
+      body: JSON.stringify(body),
+      cache: "no-store"
+    }).then(function (res) {
+      return res.json().then(function (j) { return { status: res.status, j: j || {} }; }, function () { return { status: res.status, j: {} }; });
+    });
+  }
+
+  function flushQueue() {
+    const cfg0 = getCfg();
+    if (flushing || !canSyncSteps(cfg0) || (typeof navigator !== "undefined" && navigator.onLine === false)) return Promise.resolve();
+    flushing = true;
+    let wrote = false;
+    function next() {
+      const cfg = getCfg();
+      const q = loadQueue();
+      if (!q.length || !canSyncSteps(cfg)) return Promise.resolve();
+      const item = q[0];
+      item.body.code = cfg.code;
+      if (cfg.tester) item.body.tester = cfg.tester.slice(0, 80);
+      if (!item.body.tester) {
+        q.shift();
+        saveQueue(q);
+        setSyncNote(item.stepId, "Add your name in Connect to sheet to sync", true);
+        return next();
+      }
+      return sendWrite(cfg, item.body).catch(function () { return { status: 0, j: {} }; }).then(function (res) {
+        const okRes = res.status === 200 && res.j.ok !== false;
+        if (okRes) {
+          const cur = loadQueue();
+          cur.shift();
+          saveQueue(cur);
+          wrote = true;
+          writeEpoch += 1;
+          setSyncNote(item.stepId, item.kind === "status" ? "Saved" : "", false);
+          return next();
+        }
+        if (res.status === 400 || res.status === 401) {
+          const cur = loadQueue();
+          cur.shift();
+          saveQueue(cur);
+          const msg = String((res.j && res.j.error) || "");
+          if (/code/i.test(msg)) {
+            disconnect();
+            setStatus("The team code was rejected, so nothing was written. Connect again with the right code.");
+            return Promise.resolve();
+          }
+          setSyncNote(item.stepId, "Couldn't save", true);
+          return next();
+        }
+        item.tries = (item.tries || 0) + 1;
+        const cur = loadQueue();
+        if (cur.length) { cur[0].tries = item.tries; saveQueue(cur); }
+        setSyncNote(item.stepId, "Couldn't save", true);
+        clearTimeout(flushTimer);
+        flushTimer = setTimeout(flushQueue, Math.min(60000, 2000 * Math.pow(2, item.tries)));
+        return Promise.resolve();
+      });
+    }
+    return next().then(function () {
+      flushing = false;
+      if (wrote) return fetchRead();
+    }, function () { flushing = false; });
+  }
+
+  function pushStatus(elId) {
+    const el = document.getElementById(elId);
+    if (!el) return;
+    const stepId = el.getAttribute("data-step");
+    const cfg = getCfg();
+    paintSyncLabels();
+    if (!canSyncSteps(cfg)) {
+      setSyncNote(stepId, "", false);
+      return;
+    }
+    const map = (window.UAT_PAGE && window.UAT_PAGE.getStatuses && window.UAT_PAGE.getStatuses()) || {};
+    enqueueWrite("status", stepId, {
+      code: cfg.code,
+      stepId: stepId,
+      status: localWord(map[elId]),
+      tester: cfg.tester.slice(0, 80)
+    });
+    setSyncNote(stepId, "Saving...", false);
+    flushQueue();
+  }
+
+  function pushJira(elId, key) {
+    const el = document.getElementById(elId);
+    const cfg = getCfg();
+    const jira = String(key || "").trim().toUpperCase();
+    if (!el || !JIRA_KEY_RE.test(jira) || !canSyncSteps(cfg)) return;
+    const stepId = el.getAttribute("data-step");
+    const known = stepMap[stepId] && String(stepMap[stepId].jira || "").toUpperCase();
+    if (known === jira) return;
+    // Jira-only body: no status field, so it cannot overwrite a status.
+    enqueueWrite("jira", stepId, { code: cfg.code, stepId: stepId, jira: jira, tester: cfg.tester.slice(0, 80) });
+    flushQueue();
+  }
+
+  // Merge sheet statuses into local marks; one-time backfill of marks the sheet lacks.
+  function mergeSheetStatuses(rows) {
+    const cfg = getCfg();
+    if (!canSyncSteps(cfg)) return;
+    const queued = queuedStepIds();
+    const local = (window.UAT_PAGE && window.UAT_PAGE.getStatuses && window.UAT_PAGE.getStatuses()) || {};
+    const backfillDone = !!(readJson(BACKFILL_KEY, null) || {}).done;
+    const updates = {};
+    const pushes = [];
+    const seen = {};
+    (rows || []).forEach(function (row) {
+      const stepId = row && String(row.stepId || "").trim();
+      if (!stepId || queued[stepId]) return;
+      const el = stepElFor(stepId);
+      if (!el) return;
+      seen[stepId] = true;
+      const sheet = statusWord(row.status);
+      const loc = localWord(local[el.id]);
+      if (sheet) {
+        if (sheet.toLowerCase() !== loc.toLowerCase()) updates[el.id] = sheet.toLowerCase();
+      } else if (loc) {
+        if (!backfillDone) pushes.push({ el: el, stepId: stepId, status: loc });
+        else updates[el.id] = "unset";
+      }
+    });
+    if (Object.keys(updates).length && window.UAT_PAGE && window.UAT_PAGE.applyStatusUpdates) window.UAT_PAGE.applyStatusUpdates(updates);
+    if (!backfillDone) {
+      pushes.forEach(function (p) {
+        enqueueWrite("status", p.stepId, { code: cfg.code, stepId: p.stepId, status: p.status, tester: cfg.tester.slice(0, 80) });
+      });
+      // jira keys saved only on this device
+      let bugs = {};
+      try { bugs = JSON.parse(localStorage.getItem("one-tools-uat-tc-bugs-v1") || "{}") || {}; } catch (e) {}
+      Object.keys(bugs).forEach(function (id) {
+        const rec = bugs[id] || {};
+        const key = String(rec.ticket || "").trim().toUpperCase();
+        const el = document.getElementById(id);
+        if (!el || !JIRA_KEY_RE.test(key)) return;
+        const stepId = el.getAttribute("data-step");
+        const row = (rows || []).filter(function (r) { return String(r.stepId || "").trim() === stepId; })[0];
+        if (!row || String(row.jira || "").trim()) return;
+        enqueueWrite("jira", stepId, { code: cfg.code, stepId: stepId, jira: key, tester: cfg.tester.slice(0, 80) });
+      });
+      if (cfg.tester) {
+        writeJson(BACKFILL_KEY, { done: true, at: new Date().toISOString() });
+        flushQueue();
+      }
+    }
   }
 
   function openConnect() {
@@ -8304,8 +8625,14 @@ document.addEventListener("DOMContentLoaded", function () {
     fillForm(cfg);
     paintConnect();
     paintAllAssign();
+    paintSyncLabels();
     bind();
     startPoll();
+    flushQueue();
+    window.addEventListener("online", flushQueue);
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState === "visible") flushQueue();
+    });
   }
 
   window.UAT_SYNC = {
@@ -8323,7 +8650,14 @@ document.addEventListener("DOMContentLoaded", function () {
     adapter: AssignmentAdapter,
     disconnect: disconnect,
     paintConnect: paintConnect,
-    paintAllAssign: paintAllAssign
+    paintAllAssign: paintAllAssign,
+    pushStatus: pushStatus,
+    pushJira: pushJira,
+    flushQueue: flushQueue,
+    paintSyncLabels: paintSyncLabels,
+    queue: loadQueue,
+    BACKFILL_KEY: BACKFILL_KEY,
+    QUEUE_KEY: QUEUE_KEY
   };
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
