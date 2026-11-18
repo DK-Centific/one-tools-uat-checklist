@@ -1742,6 +1742,9 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
 @media print { .connect-chip { display: none !important; } }
 .sync-hint { margin: 8px 0; font-size: 0.9rem; opacity: 0.85; }
 .sync-hint[hidden] { display: none; }
+@keyframes uat-synced { 0% { box-shadow: 0 0 0 0 rgba(0,128,128,0); } 30% { box-shadow: 0 0 0 4px rgba(0,128,128,0.28); } 100% { box-shadow: 0 0 0 0 rgba(0,128,128,0); } }
+.status.is-synced { animation: uat-synced 900ms var(--ease-out, ease-out); border-radius: 10px; }
+@media (prefers-reduced-motion: reduce) { .status.is-synced { animation: none; } }
 
   </style>
 </head>
@@ -6659,12 +6662,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
           return previewMatch(el, { ...saved, bugs: true });
         }).length;
         const c = btn.querySelector(".count");
-        if (c) c.textContent = String(n);
+        if (c && c.textContent !== String(n)) c.textContent = String(n);
         return;
       }
       if (!btn.querySelector(".count")) return;
       const n = $$(".step").filter((el) => previewMatch(el, { ...state, [dim]: val })).length;
-      btn.querySelector(".count").textContent = String(n);
+      const cEl = btn.querySelector(".count");
+      if (cEl.textContent !== String(n)) cEl.textContent = String(n);
     });
   }
 
@@ -6819,17 +6823,19 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
       const pct = g.total ? Math.round((g.done / g.total) * 100) : 0;
       function setSeg(name, n) {
         const el = track.querySelector('[data-seg="' + name + '"]');
-        if (el) el.style.width = (g.total ? ((100 * n) / g.total) : 0) + "%";
+        const w = (g.total ? ((100 * n) / g.total) : 0) + "%";
+        if (el && el.style.width !== w) el.style.width = w;
       }
       setSeg("pass", g.pass);
       setSeg("fail", g.fail);
       setSeg("blocked", g.blocked);
-      track.setAttribute("aria-valuenow", String(pct));
+      if (track.getAttribute("aria-valuenow") !== String(pct)) track.setAttribute("aria-valuenow", String(pct));
       const root = track.closest(".prog");
       const lab = root && root.querySelector("[data-prog-num]");
       const pctEl = root && root.querySelector("[data-prog-pct]");
-      if (lab) lab.textContent = g.done + " of " + g.total + " marked";
-      if (pctEl) pctEl.textContent = pct + "%";
+      const labTxt = g.done + " of " + g.total + " marked";
+      if (lab && lab.textContent !== labTxt) lab.textContent = labTxt;
+      if (pctEl && pctEl.textContent !== pct + "%") pctEl.textContent = pct + "%";
     });
     if (window.UAT_ISLAND && typeof window.UAT_ISLAND.paintProgress === "function") {
       window.UAT_ISLAND.paintProgress();
@@ -6850,7 +6856,11 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
 
   // Sheet read-back: sheet wins once synced. updates is {stepElId: "pass"|"fail"|"blocked"|"unset"}.
   function applyStatusUpdates(updates) {
-    const ids = Object.keys(updates || {});
+    const map0 = loadStatus();
+    const ids = Object.keys(updates || {}).filter(function (id) {
+      const val = updates[id];
+      return (val === "unset" || !val) ? !!map0[id] : map0[id] !== val;
+    });
     if (!ids.length) return;
     const map = loadStatus();
     ids.forEach(function (id) {
@@ -6860,15 +6870,26 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     });
     saveStatus(map);
     cache.clear();
-    ids.forEach(paintStatus);
+    ids.forEach(function (id) {
+      paintStatus(id);
+      const fs = document.querySelector('.status[data-for="' + CSS.escape(id) + '"]');
+      if (fs) {
+        fs.classList.remove("is-synced");
+        void fs.offsetWidth;
+        fs.classList.add("is-synced");
+      }
+    });
     updateProgress();
+    updateCounts();
+    // Only re-filter when a status filter could change what is visible.
     if (state.status) apply({ animate: false });
   }
 
   function paintStatus(id) {
     const val = stepStatus(id);
     $$('.status[data-for="' + CSS.escape(id) + '"] .status-btn').forEach((btn) => {
-      btn.setAttribute("aria-pressed", btn.dataset.val === val ? "true" : "false");
+      const want = btn.dataset.val === val ? "true" : "false";
+      if (btn.getAttribute("aria-pressed") !== want) btn.setAttribute("aria-pressed", want);
     });
   }
 
@@ -7276,12 +7297,30 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     t.classList.add("is-shown");
   }
 
+  // Field ids and option ids read from Jira createmeta for PS / Bug (10009).
+  const AREA_FIELD = "customfield_11243";
+  const PROJECT_NAME_FIELD = "customfield_10222";
+  const SEVERITY_FIELD = "customfield_14058";
+  const PROJECT_NAME = "OD_Sesame";
+  const UAT_LABEL = "one-tools-uat";
+  const AREA_DEFAULT = "11151"; // Project Management
+  const AREA_BY_TC = { TC3: "11139", TC4: "11139", TC6: "11139" }; // Recruitment-Applicants
+  function areaId(tc) { return AREA_BY_TC[String(tc || "").trim()] || AREA_DEFAULT; }
+  function severityOptionId(severity) {
+    const s = String(severity || "").trim().toLowerCase();
+    if (s === "blocker" || s === "critical" || s === "highest") return "13921"; // S1
+    if (s === "major" || s === "high") return "13922"; // S2
+    if (s === "minor" || s === "medium") return "13923"; // S3
+    if (s === "trivial" || s === "cosmetic" || s === "low") return "13924"; // S4
+    return "";
+  }
+
   function priorityId(severity) {
     const s = String(severity || "").trim().toLowerCase();
     if (s === "blocker" || s === "critical" || s === "highest") return "1";
     if (s === "major" || s === "high") return "2";
     if (s === "minor" || s === "medium") return "3";
-    if (s === "trivial" || s === "low") return "4";
+    if (s === "trivial" || s === "cosmetic" || s === "low") return "4";
     return "3";
   }
 
@@ -7294,10 +7333,11 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
 
   function wikiSteps(steps) {
     const raw = String(steps || "").trim();
-    if (!raw) return "# (add the steps to reproduce)";
+    if (!raw) return "1. (add the steps to reproduce)";
+    let n = 0;
     return raw.split(/\n+/).map(function (line) {
       const m = line.replace(/^\s*#\s*/, "").replace(/^\s*\d+[\.\)]\s*/, "").trim();
-      return m ? "# " + m : "";
+      return m ? (++n + ". " + m) : "";
     }).filter(Boolean).join("\n");
   }
 
@@ -7309,33 +7349,33 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     const actual = cleanActual(rec.description) || title;
     const tc = ((model.tc || "") + " " + (model.step || "")).trim();
     const parts = [
-      "h3. Summary of issue",
+      "Summary of issue:",
       title,
       "",
-      "h3. Steps to reproduce",
+      "Steps to reproduce:",
       wikiSteps(rec.steps),
       "",
-      "h3. Expected result",
+      "Expected result:",
       rec.expected || "(add the expected result)",
       "",
-      "h3. Actual result",
+      "Actual result:",
       actual,
       "",
-      "h3. Scope / impact",
+      "Scope / impact:",
       rec.scope || "(add the scope)",
       "",
-      "h3. Environment",
+      "Environment:",
       "OneForma / One Tools staging: " + env,
       "Browser: (add if known)",
       "",
-      "h3. TC / step",
+      "TC / step:",
       tc || "(add the TC and step)",
       model.step ? ("UAT-Step: " + model.step) : "",
       "",
-      "h3. Severity",
+      "Severity:",
       rec.severity || rec.type || "Bug",
       "",
-      "h3. Evidence",
+      "Evidence:",
       "screenshot attached to this ticket"
     ];
     return parts.join("\n").replace(/\u2014/g, " to ").replace(/\u2013/g, " to ");
@@ -7347,10 +7387,10 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     if (tryUrl(body) <= limit) return body;
     body = body.replace(/\nBrowser: \(add if known\)/, "");
     if (tryUrl(body) <= limit) return body;
-    const blocks = body.split(/\n(?=h3\. )/);
+    const blocks = body.split(/\n\n(?=(?:Summary of issue|Steps to reproduce|Expected result|Actual result|Scope \/ impact|Environment|TC \/ step|Severity|Evidence):\n)/);
     function shrink(label, cut) {
       for (let i = 0; i < blocks.length; i++) {
-        if (blocks[i].indexOf("h3. " + label) !== 0) continue;
+        if (blocks[i].indexOf(label + ":") !== 0) continue;
         const lines = blocks[i].split("\n");
         const head = lines[0];
         let rest = lines.slice(1).join("\n").trim();
@@ -7360,13 +7400,13 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
       }
     }
     let cut = 500;
-    while (tryUrl(blocks.join("\n")) > limit && cut >= 80) {
+    while (tryUrl(blocks.join("\n\n")) > limit && cut >= 80) {
       shrink("Steps to reproduce", cut);
       shrink("Actual result", cut);
       shrink("Expected result", Math.max(80, cut));
       cut -= 80;
     }
-    return blocks.join("\n");
+    return blocks.join("\n\n");
   }
 
   function buildUrl(id, rec) {
@@ -7378,7 +7418,11 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
       + "&issuetype=" + encodeURIComponent(JIRA_TYPE)
       + "&summary=" + encodeURIComponent(summary)
       + "&priority=" + encodeURIComponent(pri)
-      + "&" + APP_NAME_FIELD + "=" + encodeURIComponent(APP_NAME_ONEFORMA);
+      + "&" + APP_NAME_FIELD + "=" + encodeURIComponent(APP_NAME_ONEFORMA)
+      + "&" + AREA_FIELD + "=" + encodeURIComponent(areaId(model.tc))
+      + "&" + PROJECT_NAME_FIELD + "=" + encodeURIComponent(PROJECT_NAME)
+      + "&labels=" + encodeURIComponent(UAT_LABEL)
+      + (severityOptionId(rec.severity) ? "&" + SEVERITY_FIELD + "=" + encodeURIComponent(severityOptionId(rec.severity)) : "");
     let body = jiraDescription(id, rec);
     body = shortenBody(body, base.length + "&description=".length, URL_LIMIT);
     const url = base + "&description=" + encodeURIComponent(body);
@@ -7422,11 +7466,11 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     if (chip) {
       const wasHidden = chip.hidden;
       if (key) {
-        chip.hidden = false;
-        chip.href = browseUrl(key);
-        chip.textContent = "Filed: " + key;
+        if (chip.hidden) chip.hidden = false;
+        if (chip.getAttribute("href") !== browseUrl(key)) chip.href = browseUrl(key);
+        if (chip.textContent !== "Filed: " + key) chip.textContent = "Filed: " + key;
         if (wasHidden) animateFiledChip(chip);
-      } else {
+      } else if (!chip.hidden) {
         chip.hidden = true;
         chip.removeAttribute("href");
         chip.textContent = "Filed";
@@ -7435,21 +7479,14 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     }
     fileBtns.forEach(function (fileBtn) {
       const headerOnly = fileBtn.hasAttribute("data-filed-view");
-      if (key) {
-        fileBtn.textContent = "View ticket";
-        fileBtn.setAttribute("data-action", "view-jira");
-        fileBtn.hidden = false;
-      } else if (headerOnly) {
-        fileBtn.hidden = true;
-        fileBtn.textContent = "View ticket";
-        fileBtn.setAttribute("data-action", "view-jira");
-      } else {
-        fileBtn.hidden = false;
-        fileBtn.textContent = "File in Jira";
-        fileBtn.setAttribute("data-action", "file-jira");
-      }
+      const wantTxt = key ? "View ticket" : (headerOnly ? "View ticket" : "File in Jira");
+      const wantAct = key ? "view-jira" : (headerOnly ? "view-jira" : "file-jira");
+      const wantHidden = key ? false : headerOnly;
+      if (fileBtn.textContent !== wantTxt) fileBtn.textContent = wantTxt;
+      if (fileBtn.getAttribute("data-action") !== wantAct) fileBtn.setAttribute("data-action", wantAct);
+      if (fileBtn.hidden !== wantHidden) fileBtn.hidden = wantHidden;
     });
-    anyways.forEach(function (anyway) { anyway.hidden = !key; });
+    anyways.forEach(function (anyway) { if (anyway.hidden !== !key) anyway.hidden = !key; });
   }
 
   function openTab(url, marker, value) {
@@ -7850,7 +7887,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const ids = enabled ? assignedIds(tc) : [];
     const chips = root.querySelector("[data-assign-chips]");
     const hint = root.querySelector("[data-assign-hint]");
-    root.classList.toggle("is-waiting", !enabled);
+    if (root.classList.contains("is-waiting") === enabled) root.classList.toggle("is-waiting", !enabled);
+    const sigKey = JSON.stringify([ids, enabled, readFailed, connected]);
+    if (root.getAttribute("data-assign-sig") === sigKey) return;
+    root.setAttribute("data-assign-sig", sigKey);
     if (chips) {
       chips.innerHTML = "";
       ids.forEach(function (id) {
@@ -7891,12 +7931,20 @@ document.addEventListener("DOMContentLoaded", function () {
     if (window.UAT_PAGE && window.UAT_PAGE.refreshPeople) window.UAT_PAGE.refreshPeople();
   }
 
-  function applyAssignmentsFromRead(assignments) {
+  function applyAssignmentsFromRead(assignments, force) {
+    let changed = !!force;
     Object.keys(assignments || {}).forEach(function (tc) {
-      assignMap[tc] = (assignments[tc] || []).slice();
+      const nextList = (assignments[tc] || []).slice();
+      if (JSON.stringify(assignMap[tc] || []) !== JSON.stringify(nextList)) {
+        changed = true;
+        assignMap[tc] = nextList;
+        paintAssign(tc);
+      }
     });
-    paintAllAssign();
-    refreshPeopleViews();
+    if (changed) {
+      paintAllAssign();
+      refreshPeopleViews();
+    }
   }
 
   function safeParse(raw) {
@@ -7956,6 +8004,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function setReadError(show) {
+    if (readFailed === !!show) return;
     readFailed = !!show;
     $all("[data-read-error]").forEach(function (el) { el.hidden = !show; });
     paintAllAssign();
@@ -7993,12 +8042,19 @@ document.addEventListener("DOMContentLoaded", function () {
         updatedBy: row.updatedBy
       };
     });
+    const prev = stepMap || {};
     stepMap = next;
+    const enabledChanged = assignmentsEnabled !== !!adapted.fieldPresent;
     assignmentsEnabled = !!adapted.fieldPresent;
+    // Background refresh: repaint only steps whose Jira key changed.
     $all(".step").forEach(function (el) {
+      const sid = el.getAttribute("data-step");
+      const a = String((prev[sid] && prev[sid].jira) || "").trim();
+      const b2 = String((next[sid] && next[sid].jira) || "").trim();
+      if (a === b2 && !(opts && opts.full)) return;
       if (window.UAT_BUGS && window.UAT_BUGS.paintFiled) window.UAT_BUGS.paintFiled(el.id);
     });
-    applyAssignmentsFromRead(adapted.assignments);
+    applyAssignmentsFromRead(adapted.assignments, enabledChanged);
     if (!stale) mergeSheetStatuses(rows);
     paintSyncLabels();
   }
@@ -8121,7 +8177,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function paintSyncLabels() {
     const on = canSyncSteps(getCfg());
-    $all("[data-sync-hint]").forEach(function (el) { el.hidden = on; });
+    $all("[data-sync-hint]").forEach(function (el) { if (el.hidden !== on) el.hidden = on; });
   }
 
   function enqueueWrite(kind, stepId, body) {
