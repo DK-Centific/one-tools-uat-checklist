@@ -7732,7 +7732,38 @@ document.addEventListener("DOMContentLoaded", function () {
     return { present: false, value: null };
   }
 
-  // One adapter: change only this when PA finalizes the read/update shapes.
+  function sanitizeAssignedNames(ids) {
+    const seen = {};
+    const names = [];
+    (Array.isArray(ids) ? ids : []).forEach(function (id) {
+      const p = personById(id);
+      let name = String(p ? p.name : id || "").trim();
+      if (!name || name.indexOf("@") !== -1) return;
+      if (name.length > 40) name = name.slice(0, 40).trim();
+      if (!name) return;
+      const key = name.toLowerCase();
+      if (seen[key]) return;
+      seen[key] = true;
+      names.push(name);
+    });
+    if (names.length > 20) names.length = 20;
+    return names;
+  }
+
+  function testerFirstName(value) {
+    const raw = String(value || "").trim();
+    if (!raw || raw.indexOf("@") !== -1) return "";
+    const known = normalizePersonToken(raw);
+    if (known) {
+      const p = personById(known);
+      if (p && p.name) return String(p.name).trim();
+    }
+    return raw.split(/\s+/)[0].slice(0, 40);
+  }
+
+  // Confirmed PA shapes: Read is a top-level array of 49 rows with
+  // assignedPeople (always an array of first names, [] if empty).
+  // Update body is {code, tc, assignedPeople, tester?}  - never stepId with tc.
   const AssignmentAdapter = {
     fromRead: function (rows) {
       const steps = [];
@@ -7760,17 +7791,13 @@ document.addEventListener("DOMContentLoaded", function () {
       return { steps: steps, assignments: assignments, fieldPresent: fieldPresent };
     },
     toUpdate: function (input) {
-      const ids = Array.isArray(input.assignedPeople) ? input.assignedPeople : [];
-      const names = ids.map(function (id) {
-        const p = personById(id);
-        return p ? p.name : id;
-      }).filter(Boolean);
       const body = {
         code: input.code,
         tc: input.tc,
-        assignedPeople: names
+        assignedPeople: sanitizeAssignedNames(input.assignedPeople)
       };
-      if (input.tester) body.tester = input.tester;
+      const tester = testerFirstName(input.tester);
+      if (tester) body.tester = tester;
       return body;
     }
   };
@@ -8098,14 +8125,22 @@ document.addEventListener("DOMContentLoaded", function () {
       body: JSON.stringify({ code: cfg.code }),
       cache: "no-store"
     }).then(function (res) {
-      if (!res.ok) {
+      return res.json().then(function (data) {
+        const failed = !res.ok || (data && typeof data === "object" && !Array.isArray(data) && data.ok === false);
+        if (failed) {
+          setReadError(true);
+          return null;
+        }
+        if (!Array.isArray(data)) {
+          setReadError(true);
+          return null;
+        }
+        setReadError(false);
+        applyRead(data);
+        return data;
+      }, function () {
         setReadError(true);
         return null;
-      }
-      return res.json().then(function (data) {
-        setReadError(false);
-        applyRead(Array.isArray(data) ? data : []);
-        return data;
       });
     }).catch(function () {
       setReadError(true);
