@@ -1719,6 +1719,28 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
 .sync-note.is-error { color: var(--danger); }
 @media print { .sync-note { display: none !important; } }
 
+.connect-chip {
+  margin: var(--space-3) 0 0;
+  font-size: 0.8125rem;
+  color: var(--ink-soft);
+}
+.connect-chip[hidden],
+.connect-box[hidden] { display: none; }
+.connect-chip-btn {
+  appearance: none;
+  border: 0;
+  padding: 0;
+  background: none;
+  font: inherit;
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+  cursor: pointer;
+}
+.connect-chip-btn:hover, .connect-chip-btn:focus-visible { color: var(--ink); }
+@media print { .connect-chip { display: none !important; } }
+
   </style>
 </head>
 <body>
@@ -1763,9 +1785,11 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
         <div class="connect-actions">
           <button type="submit" class="bug-btn primary">Save connection</button>
           <button type="button" class="bug-btn" data-action="disconnect" hidden>Disconnect</button>
+          <button type="button" class="bug-btn" data-action="cancel-connect" hidden>Cancel</button>
         </div>
       </form>
     </details>
+    <p class="connect-chip" data-connect-chip hidden><span data-connect-chip-text></span><button type="button" class="connect-chip-btn" data-action="change-connect">Change</button></p>
   </header>
 
   <details class="how wrap">
@@ -1902,13 +1926,8 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     <p class="tc-assign-heading">Assigned people</p>
     <div class="tc-assign-row">
       <div class="tc-assign-chips" data-assign-chips></div>
-      <div class="tc-assign-add" hidden>
-        <button type="button" class="bug-btn" data-action="open-assign-picker" data-tc="TC1" aria-haspopup="listbox" aria-expanded="false">Add person</button>
-        <div class="tc-assign-picker" data-assign-picker hidden role="listbox" aria-label="Add a person to TC1"></div>
-      </div>
     </div>
-    <p class="tc-assign-hint" data-assign-hint><button type="button" class="tc-assign-connect" data-action="open-connect">Connect to the sheet</button> to see and edit assignments</p>
-    <p class="tc-assign-status" data-assign-status hidden aria-live="polite"></p>
+    <p class="tc-assign-hint" data-assign-hint><button type="button" class="tc-assign-connect" data-action="open-connect">Connect to the sheet</button> to see assigned people</p>
   </div>
   <div class="guide-intro" data-guide-for="TC1"><aside class="guide-panel guide-warn" aria-label="Test project"><h3>Test project</h3><p><p>Use OD_Sesame (PRJ-01057) for UAT testing.</p></p><p><p>Use test accounts only. Never write a password anywhere on this page, in the sheet, or in Jira.</p></p></aside><aside class="guide-panel" aria-label="Before you start"><h3>Before you start</h3><ul class="guide-list"><li>Sign in only with your assigned test account from the TEST_Accts tab. Never paste passwords into chat, the sheet, or Jira.</li><li>You need OneForma PM access and One Tools Admin or PM access, plus a PID, client, and approved rate.</li><li>Project: OD_Sesame (PRJ-01057); country/language United States, en_US; venue zone America/Los_Angeles.</li><li>Confirm in session which staff names to add. Do not add Zane. Andrea as PSA PM is not needed to finish TC1.</li><li>Take a screenshot of every result, and write down the OneForma Project ID, Job ID, and One Tools project name.</li><li>If something does not match You should see, mark the step Fail and note: what you clicked, what you expected, what happened, the screenshot, and the IDs.</li></ul></aside><aside class="guide-panel" aria-label="Where things are in One Tools"><h3>Where things are in One Tools</h3><dl class="guide-where"><div><dt>OneForma project</dt><dd>In OneForma, open the OD_Sesame (PRJ-01057) project.</dd></div><div><dt>One Tools Projects</dt><dd>One Tools, then Projects. Find the project by its OneForma project ID.</dd></div><div><dt>Project members</dt><dd>Resource list, then Project members. Set roles with Roles, then Save roles.</dd></div><div><dt>General configuration</dt><dd>Configuration, then General. Save draft, then Validate and publish.</dd></div><div><dt>Payment and notifications</dt><dd>Configuration, then Payment and Notification center.</dd></div><div><dt>After General is published</dt><dd>The menu shows Booking Workspace, Sessions, Session Tasks, and Session Payments.</dd></div></dl></aside><aside class="guide-panel" aria-label="Who is who"><h3>Who is who</h3><ul class="guide-list"><li><strong>OneForma PM and One Tools Admin / PM:</strong> David</li><li><strong>Watcher (OneForma vs One Tools field match):</strong> Shreya</li><li><strong>Watcher on rate, currency, and unit (1.2 and 1.7):</strong> Saswati</li><li><strong>Staff to add:</strong> Confirm in session (Isha&#x27;s schedulers; Derrell / Bhargav as Moderator). Do not add Zane.</li><li><strong>PM approver for later TC5.7:</strong> Shreya</li></ul></aside></div>
   
@@ -2547,13 +2566,8 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     <p class="tc-assign-heading">Assigned people</p>
     <div class="tc-assign-row">
       <div class="tc-assign-chips" data-assign-chips></div>
-      <div class="tc-assign-add" hidden>
-        <button type="button" class="bug-btn" data-action="open-assign-picker" data-tc="TC2" aria-haspopup="listbox" aria-expanded="false">Add person</button>
-        <div class="tc-assign-picker" data-assign-picker hidden role="listbox" aria-label="Add a person to TC2"></div>
-      </div>
     </div>
-    <p class="tc-assign-hint" data-assign-hint><button type="button" class="tc-assign-connect" data-action="open-connect">Connect to the sheet</button> to see and edit assignments</p>
-    <p class="tc-assign-status" data-assign-status hidden aria-live="polite"></p>
+    <p class="tc-assign-hint" data-assign-hint><button type="button" class="tc-assign-connect" data-action="open-connect">Connect to the sheet</button> to see assigned people</p>
   </div>
   <div class="guide-intro" data-guide-for="TC2"><aside class="guide-panel guide-warn" aria-label="Test project"><h3>Test project</h3><p><p>Use OD_Sesame (PRJ-01057) for UAT testing.</p></p><p><p>Use test accounts only. Never write a password anywhere on this page, in the sheet, or in Jira.</p></p></aside><aside class="guide-panel" aria-label="Before you start"><h3>Before you start</h3><ul class="guide-list"><li>Scheduling setup starts only after TC1 is published (1.6 and 1.7).</li><li>Venue: UAT Venue LA, America/Los_Angeles. Session type: UAT Lab 60 min, SessionRules, 09:00 to 18:00 Mon to Fri, 2 places per slot, Job ID + rate.</li><li>Confirm in session the venue address to enter, and the booking-window dates to use. Do not use a real production venue.</li><li>Sign in only with your assigned test account from the TEST_Accts tab. Never paste passwords into chat, the sheet, or Jira.</li><li>Name anything you create with your initials, for example UAT-DK-...</li><li>Take a screenshot of every result, and write down venue, session type, Job ID, rate, and the moderator whose hours are set.</li><li>If something does not match You should see, mark the step Fail and note: what you clicked, what you expected, what happened, the screenshot, and the IDs.</li></ul></aside><aside class="guide-panel" aria-label="Where things are in One Tools"><h3>Where things are in One Tools</h3><dl class="guide-where"><div><dt>Venues</dt><dd>Configuration, then Venues, then Add venue.</dd></div><div><dt>Session types</dt><dd>Configuration, then Sessions, then Add Session Type.</dd></div><div><dt>Slot rules and price</dt><dd>On the session type (SessionRules, booking window, and Price). Confirm in session if those fields are on a separate screen.</dd></div><div><dt>Moderators</dt><dd>Resource list, then Moderators, then View. Edit Working Hours, then Save Changes.</dd></div><div><dt>Session tasks</dt><dd>Output, then Session Tasks, then Add task (gate: Before the delivery is submitted).</dd></div><div><dt>Venue address</dt><dd>Confirm in session.</dd></div></dl></aside><aside class="guide-panel" aria-label="Who is who"><h3>Who is who</h3><ul class="guide-list"><li><strong>One Tools PM / Admin:</strong> Shreya</li><li><strong>Watcher, and primary owner of 2.4:</strong> Saswati (she creates the OneForma job ad)</li><li><strong>Moderators whose hours are set:</strong> Derrell and/or Bhargav. Do not use Zane.</li><li><strong>Will use the session type in TC4:</strong> Isha</li></ul></aside></div>
   
@@ -3191,13 +3205,8 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     <p class="tc-assign-heading">Assigned people</p>
     <div class="tc-assign-row">
       <div class="tc-assign-chips" data-assign-chips></div>
-      <div class="tc-assign-add" hidden>
-        <button type="button" class="bug-btn" data-action="open-assign-picker" data-tc="TC3" aria-haspopup="listbox" aria-expanded="false">Add person</button>
-        <div class="tc-assign-picker" data-assign-picker hidden role="listbox" aria-label="Add a person to TC3"></div>
-      </div>
     </div>
-    <p class="tc-assign-hint" data-assign-hint><button type="button" class="tc-assign-connect" data-action="open-connect">Connect to the sheet</button> to see and edit assignments</p>
-    <p class="tc-assign-status" data-assign-status hidden aria-live="polite"></p>
+    <p class="tc-assign-hint" data-assign-hint><button type="button" class="tc-assign-connect" data-action="open-connect">Connect to the sheet</button> to see assigned people</p>
   </div>
   <div class="guide-intro" data-guide-for="TC3"><aside class="guide-panel guide-warn" aria-label="Test project"><h3>Test project</h3><p>Use OD_Sesame (PRJ-01057) for UAT testing.</p><p>Use test accounts only. Never write a password anywhere on this page, in the sheet, or in Jira.</p></aside><aside class="guide-panel" aria-label="Before you start"><h3>Before you start</h3><ul class="guide-list"><li>Sign in only with your assigned test account from the TEST_Accts tab. Never use your own real account to book.</li><li>Never paste passwords into chat, the sheet, or Jira.</li><li>Book and invite test accounts only. No real people or real emails.</li><li>Name anything you create with your initials, for example UAT-DK-...</li><li>Take a screenshot of every result, and write down every SES ID you create.</li><li>If something does not match You should see, mark the step Fail and note: what you clicked, what you expected, what happened, the screenshot, and the IDs.</li></ul></aside><aside class="guide-panel" aria-label="Where things are in One Tools"><h3>Where things are in One Tools</h3><dl class="guide-where"><div><dt>Participants</dt><dd>Resource list, then Participants</dd></div><div><dt>Booking Workspace</dt><dd>Scheduling list, then Booking Workspace (tabs: Everyone, To contact, Contacting, Booked, plus the Scheduler assignment tab)</dd></div><div><dt>Participant menu</dt><dd>The ... on a row: Book on behalf, Assign, Remove</dd></div><div><dt>Sessions</dt><dd>Output, then Sessions (Create Session button)</dd></div><div><dt>Session settings</dt><dd>Session configuration (per-slot capacity, group cap) and its Rules section (24 h reschedule and cancel cutoff, no-show limit, portal booking)</dd></div><div><dt>Members and Moderators</dt><dd>Members page (roles PM, Scheduler, Moderator, Viewer). Moderators only see sessions they moderate.</dd></div></dl></aside><aside class="guide-panel" aria-label="Who is who"><h3>Who is who</h3><ul class="guide-list"><li><strong>PM:</strong> Drew, David</li><li><strong>Scheduler:</strong> Isha (second scheduler for 3.6: Alejandra, Mounika, or Minal)</li><li><strong>Participants P1-P4:</strong> Crowd test accounts (Nikhitha, Shilpa, Drew or David as P3; confirm P4 in session)</li></ul></aside><aside class="guide-panel guide-callout" aria-label="PM setup for booking checks"><h3>PM setup for 4.4 and 4.5</h3><p><strong>PM setup before 4.4 and 4.5:</strong> create a session type with a slot capacity of 2. The live slot capacity is 4, so those group and double-booking checks will not work on the live type.</p><p>Also have at least one venue and a moderator with hours set, and confirm the 24 h cutoff in Rules.</p></aside></div>
   
@@ -3835,13 +3844,8 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     <p class="tc-assign-heading">Assigned people</p>
     <div class="tc-assign-row">
       <div class="tc-assign-chips" data-assign-chips></div>
-      <div class="tc-assign-add" hidden>
-        <button type="button" class="bug-btn" data-action="open-assign-picker" data-tc="TC4" aria-haspopup="listbox" aria-expanded="false">Add person</button>
-        <div class="tc-assign-picker" data-assign-picker hidden role="listbox" aria-label="Add a person to TC4"></div>
-      </div>
     </div>
-    <p class="tc-assign-hint" data-assign-hint><button type="button" class="tc-assign-connect" data-action="open-connect">Connect to the sheet</button> to see and edit assignments</p>
-    <p class="tc-assign-status" data-assign-status hidden aria-live="polite"></p>
+    <p class="tc-assign-hint" data-assign-hint><button type="button" class="tc-assign-connect" data-action="open-connect">Connect to the sheet</button> to see assigned people</p>
   </div>
   <div class="guide-intro" data-guide-for="TC4"><aside class="guide-panel guide-warn" aria-label="Test project"><h3>Test project</h3><p>Use OD_Sesame (PRJ-01057) for UAT testing.</p><p>Use test accounts only. Never write a password anywhere on this page, in the sheet, or in Jira.</p></aside><aside class="guide-panel" aria-label="Before you start"><h3>Before you start</h3><ul class="guide-list"><li>Sign in only with your assigned test account from the TEST_Accts tab. Never use your own real account to book.</li><li>Never paste passwords into chat, the sheet, or Jira.</li><li>Book and invite test accounts only. No real people or real emails.</li><li>Name anything you create with your initials, for example UAT-DK-...</li><li>Take a screenshot of every result, and write down every SES ID you create.</li><li>If something does not match You should see, mark the step Fail and note: what you clicked, what you expected, what happened, the screenshot, and the IDs.</li></ul></aside><aside class="guide-panel" aria-label="Where things are in One Tools"><h3>Where things are in One Tools</h3><dl class="guide-where"><div><dt>Participants</dt><dd>Resource list, then Participants</dd></div><div><dt>Booking Workspace</dt><dd>Scheduling list, then Booking Workspace (tabs: Everyone, To contact, Contacting, Booked, plus the Scheduler assignment tab)</dd></div><div><dt>Participant menu</dt><dd>The ... on a row: Book on behalf, Assign, Remove</dd></div><div><dt>Sessions</dt><dd>Output, then Sessions (Create Session button)</dd></div><div><dt>Session settings</dt><dd>Session configuration (per-slot capacity, group cap) and its Rules section (24 h reschedule and cancel cutoff, no-show limit, portal booking)</dd></div><div><dt>Members and Moderators</dt><dd>Members page (roles PM, Scheduler, Moderator, Viewer). Moderators only see sessions they moderate.</dd></div></dl></aside><aside class="guide-panel" aria-label="Who is who"><h3>Who is who</h3><ul class="guide-list"><li><strong>PM:</strong> Drew, David</li><li><strong>Scheduler:</strong> Isha (second scheduler for 3.6: Alejandra, Mounika, or Minal)</li><li><strong>Participants P1-P4:</strong> Crowd test accounts (Nikhitha, Shilpa, Drew or David as P3; confirm P4 in session)</li></ul></aside><aside class="guide-panel guide-callout" aria-label="PM setup for booking checks"><h3>PM setup for 4.4 and 4.5</h3><p><strong>PM setup before 4.4 and 4.5:</strong> create a session type with a slot capacity of 2. The live slot capacity is 4, so those group and double-booking checks will not work on the live type.</p><p>Also have at least one venue and a moderator with hours set, and confirm the 24 h cutoff in Rules.</p></aside></div>
   
@@ -4568,13 +4572,8 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     <p class="tc-assign-heading">Assigned people</p>
     <div class="tc-assign-row">
       <div class="tc-assign-chips" data-assign-chips></div>
-      <div class="tc-assign-add" hidden>
-        <button type="button" class="bug-btn" data-action="open-assign-picker" data-tc="TC5" aria-haspopup="listbox" aria-expanded="false">Add person</button>
-        <div class="tc-assign-picker" data-assign-picker hidden role="listbox" aria-label="Add a person to TC5"></div>
-      </div>
     </div>
-    <p class="tc-assign-hint" data-assign-hint><button type="button" class="tc-assign-connect" data-action="open-connect">Connect to the sheet</button> to see and edit assignments</p>
-    <p class="tc-assign-status" data-assign-status hidden aria-live="polite"></p>
+    <p class="tc-assign-hint" data-assign-hint><button type="button" class="tc-assign-connect" data-action="open-connect">Connect to the sheet</button> to see assigned people</p>
   </div>
   <div class="guide-intro" data-guide-for="TC5"><aside class="guide-panel guide-warn" aria-label="Test project"><h3>Test project</h3><p><p>Use OD_Sesame (PRJ-01057) for UAT testing.</p></p><p><p>Use test accounts only. Never write a password anywhere on this page, in the sheet, or in Jira.</p></p></aside><aside class="guide-panel" aria-label="Before you start"><h3>Before you start</h3><ul class="guide-list"><li>You need a booked session from TC4 that is due today or in its check-in window. Vendor data: SES-... for P2, that is SES-P2-behalf if timed for Wednesday. The session task must already be active from TC2.6.</li><li>Brief Derrell and Bhargav before these steps. Derrell was not on the 16 Nov call.</li><li>Confirm in session whether check-in is on or manual, whether team delivery applies, who raises payment, and whether the generic delivery upload is the same as TC7.</li><li>Impersonate Andrea as PSA PM only if a higher approval step appears; it is not required to start. AP / BO approval is late and not needed to start.</li><li>Sign in only with your assigned test account from the TEST_Accts tab. Never paste passwords into chat, the sheet, or Jira. Use test accounts only.</li><li>Take a screenshot of every result, and write down every SES ID, Delivery ID, and Payment ID you create.</li><li>If something does not match You should see, mark the step Fail and note: what you clicked, what you expected, what happened, the screenshot, and the IDs.</li></ul></aside><aside class="guide-panel" aria-label="Where things are in One Tools"><h3>Where things are in One Tools</h3><dl class="guide-where"><div><dt>Sessions</dt><dd>Output, then Sessions, then open the session drawer.</dd></div><div><dt>Check-in</dt><dd>Check in the participant, or Manual check-in with a reason when check-in is off. Confirm in session whether check-in is on or manual.</dd></div><div><dt>Start and complete</dt><dd>Start capture, then confirm; Complete session, then confirm. Confirm in session what the UI actually requires.</dd></div><div><dt>Delivery upload</dt><dd>Submissions, then Delivery submissions. Wait for Uploaded and verified, then Submit delivery, then Confirm submit. This is the generic delivery upload unless Bhargav confirms it is the same path as TC7.</dd></div><div><dt>Session payments</dt><dd>Output, then Session Payments, then Needs action.</dd></div><div><dt>OneForma payment record</dt><dd>Confirm in session the exact OneForma screen.</dd></div></dl></aside><aside class="guide-panel" aria-label="Who is who"><h3>Who is who</h3><ul class="guide-list"><li><strong>Moderator:</strong> Derrell (Bhargav as paired moderator / watcher)</li><li><strong>PM approval:</strong> Shreya</li><li><strong>Watchers on rate, currency, and the OneForma record:</strong> Saswati, and David on the mismatch check</li><li><strong>P2 Crowd tester:</strong> May need to be present at check-in, and may receive the completed email</li><li><strong>Andrea as PSA PM:</strong> Only if a higher approval step appears; not required to start</li></ul></aside></div>
   
@@ -5390,13 +5389,8 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     <p class="tc-assign-heading">Assigned people</p>
     <div class="tc-assign-row">
       <div class="tc-assign-chips" data-assign-chips></div>
-      <div class="tc-assign-add" hidden>
-        <button type="button" class="bug-btn" data-action="open-assign-picker" data-tc="TC6" aria-haspopup="listbox" aria-expanded="false">Add person</button>
-        <div class="tc-assign-picker" data-assign-picker hidden role="listbox" aria-label="Add a person to TC6"></div>
-      </div>
     </div>
-    <p class="tc-assign-hint" data-assign-hint><button type="button" class="tc-assign-connect" data-action="open-connect">Connect to the sheet</button> to see and edit assignments</p>
-    <p class="tc-assign-status" data-assign-status hidden aria-live="polite"></p>
+    <p class="tc-assign-hint" data-assign-hint><button type="button" class="tc-assign-connect" data-action="open-connect">Connect to the sheet</button> to see assigned people</p>
   </div>
   <div class="guide-intro" data-guide-for="TC6"><aside class="guide-panel guide-warn" aria-label="Test project"><h3>Test project</h3><p><p>Use OD_Sesame (PRJ-01057) for UAT testing.</p></p><p><p>Use test accounts only. Never write a password anywhere on this page, in the sheet, or in Jira.</p></p></aside><aside class="guide-panel" aria-label="Before you start"><h3>Before you start</h3><ul class="guide-list"><li>You need at least 4 booked sessions more than 24 h ahead, and one inside 24 h, from TC4.8. The reschedule / cancel cutoff is 24 h (default). Use the labeled sessions SES-R, SES-C, SES-NS, and SES-cut.</li><li>Brief Isha before these steps. Staff reschedule (6.2) must be done by a scheduler.</li><li>Do 6.3 as a pair in the daily session, 11:30-12:00 PT.</li><li>Friday 20 Nov, 11:30 AM PT readiness check: walk the TC6 audit trail together (6.8).</li><li>Do not remove a persona still needed for a main-path re-test. Confirm in session whom to remove.</li><li>Sign in only with your assigned test account from the TEST_Accts tab. Never paste passwords into chat, the sheet, or Jira. Book and invite test accounts only.</li><li>Take a screenshot of every result, and write down every SES ID you use.</li><li>If something does not match You should see, mark the step Fail and note: what you clicked, what you expected, what happened, the screenshot, and the IDs.</li></ul></aside><aside class="guide-panel" aria-label="Where things are in One Tools"><h3>Where things are in One Tools</h3><dl class="guide-where"><div><dt>Participant reschedule or cancel from email</dt><dd>The manage my session link in the confirmation email (from TC4.6).</dd></div><div><dt>Staff reschedule</dt><dd>In the workspace. Confirm in session the exact control.</dd></div><div><dt>No-show</dt><dd>Update status, then No show, with a reason.</dd></div><div><dt>Remove and restore</dt><dd>Log contact drawer, then Remove from the project (reason and justification), then Restore.</dd></div><div><dt>History</dt><dd>The participant History and the Session record.</dd></div><div><dt>Cutoff</dt><dd>Session Rules: 24 h reschedule and cancel cutoff. Confirm the cutoff is still 24 h before 6.3.</dd></div></dl></aside><aside class="guide-panel" aria-label="Who is who"><h3>Who is who</h3><ul class="guide-list"><li><strong>Scheduler:</strong> Isha</li><li><strong>Participants (Crowd):</strong> Nikhitha or Shilpa</li><li><strong>Moderator:</strong> Derrell (Bhargav as pair)</li><li><strong>PM:</strong> Shreya</li><li><strong>Watchers:</strong> Drew or David (especially 6.3 and 6.7)</li></ul></aside></div>
   
@@ -6123,13 +6117,8 @@ html[data-theme="dark"] .theme-icon-moon { display: block; }
     <p class="tc-assign-heading">Assigned people</p>
     <div class="tc-assign-row">
       <div class="tc-assign-chips" data-assign-chips></div>
-      <div class="tc-assign-add" hidden>
-        <button type="button" class="bug-btn" data-action="open-assign-picker" data-tc="TC7" aria-haspopup="listbox" aria-expanded="false">Add person</button>
-        <div class="tc-assign-picker" data-assign-picker hidden role="listbox" aria-label="Add a person to TC7"></div>
-      </div>
     </div>
-    <p class="tc-assign-hint" data-assign-hint><button type="button" class="tc-assign-connect" data-action="open-connect">Connect to the sheet</button> to see and edit assignments</p>
-    <p class="tc-assign-status" data-assign-status hidden aria-live="polite"></p>
+    <p class="tc-assign-hint" data-assign-hint><button type="button" class="tc-assign-connect" data-action="open-connect">Connect to the sheet</button> to see assigned people</p>
   </div>
   <div class="guide-intro" data-guide-for="TC7"><aside class="guide-panel guide-warn" aria-label="Test project"><h3>Test project</h3><p><p>Use OD_Sesame (PRJ-01057) for UAT testing.</p></p><p><p>Use test accounts only. Never write a password anywhere on this page, in the sheet, or in Jira.</p></p></aside><aside class="guide-panel" aria-label="Before you start"><h3>Before you start</h3><ul class="guide-list"><li>This case is proposed, pending Bhargav confirm. All steps below are confirm in session.</li><li>It was added on the 16 Nov call because the vendor cases had no Sesame tar / inspection-report upload, which the team called a gap for moderators.</li><li>Do not invent clicks. If the feature is still missing, stop and follow up rather than inventing a path.</li><li>Do not treat the generic delivery upload in TC5.5 as this case until Bhargav confirms it is the same path.</li><li>Confirm in session what fixture to use (a sample tar and inspection report). Do not put credentials on this page, in the sheet, or in Jira.</li><li>Sign in only with your assigned test account from the TEST_Accts tab. Never paste passwords into chat, the sheet, or Jira.</li><li>Take a screenshot of every result, and write down the upload / report ID and the linked Session ID.</li><li>If something does not match You should see, mark the step Fail and note: what you clicked, what you expected, what happened, the screenshot, and the IDs.</li></ul></aside><aside class="guide-panel" aria-label="Where things are in One Tools"><h3>Where things are in One Tools</h3><dl class="guide-where"><div><dt>Upload entry point</dt><dd>Confirm in session. That is the work of 7.1.</dd></div><div><dt>Generic delivery upload (TC5.5)</dt><dd>Submissions, then Delivery submissions. Confirm in session whether TC7 is the same path or a separate one.</dd></div><div><dt>Where PM and Moderator find the linked file</dt><dd>Confirm in session.</dd></div></dl></aside><aside class="guide-panel" aria-label="Who is who"><h3>Who is who</h3><ul class="guide-list"><li><strong>Owner:</strong> David</li><li><strong>Confirm with:</strong> Bhargav</li><li><strong>Alternate uploader / observer:</strong> Derrell</li><li><strong>PM trying to open the same report:</strong> Shreya</li></ul></aside><aside class="guide-panel guide-callout" aria-label="Pending confirm"><h3>Pending confirm</h3><p>All TC7 steps are confirm in session. If the upload entry point is still missing, log that as a finding rather than inventing clicks.</p></aside></div>
   
@@ -7762,8 +7751,6 @@ document.addEventListener("DOMContentLoaded", function () {
   let assignMap = {};
   let assignmentsEnabled = false;
   let readFailed = false;
-  let assignInflight = {};
-  let assignStatusTimer = {};
   const QUEUE_KEY = "one-tools-uat-sync-queue-v1";
   const BACKFILL_KEY = "one-tools-uat-sync-backfill-v1";
   const JIRA_KEY_RE = /^[A-Z][A-Z0-9]+-\d+$/;
@@ -7838,35 +7825,6 @@ document.addEventListener("DOMContentLoaded", function () {
     return { present: false, value: null };
   }
 
-  function sanitizeAssignedNames(ids) {
-    const seen = {};
-    const names = [];
-    (Array.isArray(ids) ? ids : []).forEach(function (id) {
-      const p = personById(id);
-      let name = String(p ? p.name : id || "").trim();
-      if (!name || name.indexOf("@") !== -1) return;
-      if (name.length > 40) name = name.slice(0, 40).trim();
-      if (!name) return;
-      const key = name.toLowerCase();
-      if (seen[key]) return;
-      seen[key] = true;
-      names.push(name);
-    });
-    if (names.length > 20) names.length = 20;
-    return names;
-  }
-
-  function testerFirstName(value) {
-    const raw = String(value || "").trim();
-    if (!raw || raw.indexOf("@") !== -1) return "";
-    const known = normalizePersonToken(raw);
-    if (known) {
-      const p = personById(known);
-      if (p && p.name) return String(p.name).trim();
-    }
-    return raw.split(/\s+/)[0].slice(0, 40);
-  }
-
   // Confirmed PA shapes: Read is a top-level array of 49 rows with
   // assignedPeople (always an array of first names, [] if empty).
   // Update body is {code, tc, assignedPeople, tester?}  - never stepId with tc.
@@ -7895,16 +7853,6 @@ document.addEventListener("DOMContentLoaded", function () {
         assignments[tc] = parsePeopleList(field.value);
       });
       return { steps: steps, assignments: assignments, fieldPresent: fieldPresent };
-    },
-    toUpdate: function (input) {
-      const body = {
-        code: input.code,
-        tc: input.tc,
-        assignedPeople: sanitizeAssignedNames(input.assignedPeople)
-      };
-      const tester = testerFirstName(input.tester);
-      if (tester) body.tester = tester;
-      return body;
     }
   };
 
@@ -7912,43 +7860,9 @@ document.addEventListener("DOMContentLoaded", function () {
     return (assignMap[tc] || []).slice();
   }
 
-  function canWrite(cfg) {
-    cfg = cfg || getCfg();
-    return !!(cfg && cfg.url && cfg.code);
-  }
-
   function isConnected(cfg) {
     cfg = cfg || getCfg();
     return !!(cfg && cfg.code && (cfg.url || cfg.readUrl));
-  }
-
-  function closePickers() {
-    $all(".tc-assign-picker").forEach(function (el) { el.hidden = true; });
-    $all("[data-action=open-assign-picker]").forEach(function (el) { el.setAttribute("aria-expanded", "false"); });
-  }
-
-  function setAssignStatus(tc, text, isError) {
-    const root = document.querySelector('.tc-assign[data-assign-for="' + CSS.escape(tc) + '"]');
-    if (!root) return;
-    const el = root.querySelector("[data-assign-status]");
-    if (!el) return;
-    if (assignStatusTimer[tc]) clearTimeout(assignStatusTimer[tc]);
-    if (!text) {
-      el.hidden = true;
-      el.textContent = "";
-      el.classList.remove("is-error");
-      return;
-    }
-    el.hidden = false;
-    el.textContent = text;
-    el.classList.toggle("is-error", !!isError);
-    if (text === "Saved") {
-      assignStatusTimer[tc] = setTimeout(function () {
-        if (el.textContent === "Saved") {
-          el.hidden = true;
-        }
-      }, 2500);
-    }
   }
 
   function paintAssign(tc) {
@@ -7957,47 +7871,23 @@ document.addEventListener("DOMContentLoaded", function () {
     const cfg = getCfg();
     const connected = isConnected(cfg);
     const enabled = assignmentsEnabled;
-    const writable = enabled && canWrite(cfg);
     const ids = enabled ? assignedIds(tc) : [];
     const chips = root.querySelector("[data-assign-chips]");
-    const addWrap = root.querySelector(".tc-assign-add");
     const hint = root.querySelector("[data-assign-hint]");
     root.classList.toggle("is-waiting", !enabled);
-    const prevShown = {};
     if (chips) {
-      chips.querySelectorAll("[data-assign-id]").forEach(function (el) {
-        prevShown[el.getAttribute("data-assign-id")] = true;
-      });
       chips.innerHTML = "";
       ids.forEach(function (id) {
         const p = personById(id);
-        const name = p ? p.name : id;
         const chip = document.createElement("span");
-        chip.className = "assign-chip" + (writable ? "" : " is-readonly");
+        chip.className = "assign-chip is-readonly";
         chip.setAttribute("data-assign-id", id);
         const label = document.createElement("span");
-        label.textContent = name;
+        label.textContent = p ? p.name : id;
         chip.appendChild(label);
-        if (writable) {
-          const rm = document.createElement("button");
-          rm.type = "button";
-          rm.className = "assign-chip-remove";
-          rm.setAttribute("data-action", "remove-assign");
-          rm.setAttribute("data-tc", tc);
-          rm.setAttribute("data-id", id);
-          rm.setAttribute("aria-label", "Remove " + name);
-          rm.textContent = "x";
-          chip.appendChild(rm);
-        }
         chips.appendChild(chip);
-        if (!prevShown[id]) {
-          if (!(window.UAT_MOTION && window.UAT_MOTION.reduced())) {
-            chip.classList.add("is-appearing");
-          }
-        }
       });
     }
-    if (addWrap) addWrap.hidden = !writable;
     if (hint) {
       hint.classList.remove("is-error");
       if (!connected) {
@@ -8009,21 +7899,16 @@ document.addEventListener("DOMContentLoaded", function () {
         btn.setAttribute("data-action", "open-connect");
         btn.textContent = "Connect to the sheet";
         hint.appendChild(btn);
-        hint.appendChild(document.createTextNode(" to see and edit assignments"));
+        hint.appendChild(document.createTextNode(" to see assigned people"));
       } else if (readFailed || !enabled) {
         hint.hidden = false;
         hint.classList.add("is-error");
         hint.textContent = "Couldn't load assignments";
-      } else if (!writable) {
-        hint.hidden = false;
-        hint.textContent = "Add a Sync link to assign people.";
       } else {
         hint.hidden = true;
         hint.textContent = "";
       }
     }
-    const pickerBtn = root.querySelector("[data-action=open-assign-picker]");
-    if (pickerBtn) pickerBtn.disabled = ids.length >= PEOPLE.length;
   }
 
   function paintAllAssign() {
@@ -8036,83 +7921,8 @@ document.addEventListener("DOMContentLoaded", function () {
     if (window.UAT_PAGE && window.UAT_PAGE.refreshPeople) window.UAT_PAGE.refreshPeople();
   }
 
-  function fillPicker(tc, picker) {
-    const assigned = {};
-    assignedIds(tc).forEach(function (id) { assigned[id] = true; });
-    picker.innerHTML = "";
-    PEOPLE.forEach(function (p) {
-      if (assigned[p.id]) return;
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "tc-assign-pick";
-      btn.setAttribute("data-action", "pick-assign");
-      btn.setAttribute("data-tc", tc);
-      btn.setAttribute("data-id", p.id);
-      btn.setAttribute("role", "option");
-      btn.textContent = p.name;
-      picker.appendChild(btn);
-    });
-    if (!picker.childNodes.length) {
-      const empty = document.createElement("p");
-      empty.className = "tc-assign-hint";
-      empty.textContent = "Everyone is already assigned.";
-      picker.appendChild(empty);
-    }
-  }
-
-  function saveAssigned(tc, nextIds, prevIds) {
-    const cfg = getCfg();
-    if (!canWrite(cfg)) {
-      assignMap[tc] = prevIds;
-      paintAssign(tc);
-      refreshPeopleViews();
-      setAssignStatus(tc, "Couldn't save", true);
-      return;
-    }
-    assignInflight[tc] = true;
-    const body = AssignmentAdapter.toUpdate({
-      code: cfg.code,
-      tc: tc,
-      assignedPeople: nextIds,
-      tester: cfg.tester
-    });
-    fetch(cfg.url, {
-      method: "POST",
-      headers: { "Content-Type": "text/plain;charset=UTF-8" },
-      body: JSON.stringify(body),
-      cache: "no-store"
-    }).then(function (res) {
-      if (!res.ok) throw new Error("save-failed");
-      setAssignStatus(tc, "Saved", false);
-    }).catch(function () {
-      assignMap[tc] = prevIds;
-      paintAssign(tc);
-      refreshPeopleViews();
-      setAssignStatus(tc, "Couldn't save", true);
-    }).finally(function () {
-      assignInflight[tc] = false;
-    });
-  }
-
-  function setAssigned(tc, nextIds) {
-    if (!assignmentsEnabled || !canWrite()) return;
-    const prev = assignedIds(tc);
-    const seen = {};
-    const next = [];
-    (nextIds || []).forEach(function (id) {
-      if (!id || seen[id]) return;
-      seen[id] = true;
-      next.push(id);
-    });
-    assignMap[tc] = next;
-    paintAssign(tc);
-    refreshPeopleViews();
-    saveAssigned(tc, next, prev);
-  }
-
   function applyAssignmentsFromRead(assignments) {
     Object.keys(assignments || {}).forEach(function (tc) {
-      if (assignInflight[tc]) return;
       assignMap[tc] = (assignments[tc] || []).slice();
     });
     paintAllAssign();
@@ -8184,11 +7994,33 @@ document.addEventListener("DOMContentLoaded", function () {
     form.tester.value = (cfg && cfg.tester) || "";
   }
 
+  let connectEditing = false;
+
+  function isFullyConnected(cfg) {
+    cfg = cfg || getCfg();
+    return !!(cfg && cfg.url && cfg.code && cfg.tester);
+  }
+
   function paintConnect() {
     const cfg = getCfg();
     const disconnectBtns = $all("[data-action=disconnect]");
     const connected = !!(cfg && cfg.code && (cfg.readUrl || cfg.url));
+    const full = isFullyConnected(cfg);
+    if (!full) connectEditing = false;
     disconnectBtns.forEach(function (b) { b.hidden = !connected; });
+    const box = document.getElementById("uat-connect-box");
+    const chip = document.querySelector("[data-connect-chip]");
+    const showBox = !full || connectEditing;
+    if (box) {
+      box.hidden = !showBox;
+      if (!showBox) box.open = false;
+    }
+    if (chip) {
+      chip.hidden = showBox || !full;
+      const txt = chip.querySelector("[data-connect-chip-text]");
+      if (txt && full) txt.textContent = "Connected as " + cfg.tester + " \u00b7 ";
+    }
+    $all("[data-action=cancel-connect]").forEach(function (b) { b.hidden = !(full && connectEditing); });
     paintSyncLabels();
     if (!connected) {
       setSummary("Connect to sheet");
@@ -8308,6 +8140,7 @@ document.addEventListener("DOMContentLoaded", function () {
       setStatus("Could not save the connection in this browser.");
       return false;
     }
+    connectEditing = false;
     paintConnect();
     startPoll();
     return true;
@@ -8542,6 +8375,8 @@ document.addEventListener("DOMContentLoaded", function () {
   function openConnect() {
     const box = document.getElementById("uat-connect-box");
     if (!box) return;
+    connectEditing = true;
+    paintConnect();
     box.open = true;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const top = box.getBoundingClientRect().top + window.pageYOffset - 12;
@@ -8573,47 +8408,22 @@ document.addEventListener("DOMContentLoaded", function () {
         disconnect();
         return;
       }
+      if (e.target.closest("[data-action=change-connect]")) {
+        e.preventDefault();
+        openConnect();
+        return;
+      }
+      if (e.target.closest("[data-action=cancel-connect]")) {
+        e.preventDefault();
+        connectEditing = false;
+        paintConnect();
+        return;
+      }
       if (e.target.closest("[data-action=open-connect]")) {
         e.preventDefault();
         openConnect();
         return;
       }
-      const opener = e.target.closest("[data-action=open-assign-picker]");
-      if (opener) {
-        if (!assignmentsEnabled || !canWrite()) return;
-        const tc = opener.getAttribute("data-tc");
-        const root = opener.closest(".tc-assign");
-        const picker = root && root.querySelector("[data-assign-picker]");
-        const willOpen = picker && picker.hidden;
-        closePickers();
-        if (willOpen && picker) {
-          fillPicker(tc, picker);
-          picker.hidden = false;
-          opener.setAttribute("aria-expanded", "true");
-        }
-        return;
-      }
-      const pick = e.target.closest("[data-action=pick-assign]");
-      if (pick) {
-        if (!assignmentsEnabled || !canWrite()) return;
-        const tc = pick.getAttribute("data-tc");
-        const id = pick.getAttribute("data-id");
-        closePickers();
-        setAssigned(tc, assignedIds(tc).concat([id]));
-        return;
-      }
-      const remove = e.target.closest("[data-action=remove-assign]");
-      if (remove) {
-        if (!assignmentsEnabled || !canWrite()) return;
-        const tc = remove.getAttribute("data-tc");
-        const id = remove.getAttribute("data-id");
-        setAssigned(tc, assignedIds(tc).filter(function (x) { return x !== id; }));
-        return;
-      }
-      if (!e.target.closest(".tc-assign-add")) closePickers();
-    });
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") closePickers();
     });
     document.addEventListener("visibilitychange", function () {
       if (document.visibilityState === "visible") fetchRead();
